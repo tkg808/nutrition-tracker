@@ -16,9 +16,6 @@ export default function SearchForm({ searchInput, handleChange, handleSubmit })
           required />
         <button type="submit">Find My Food!</button>
       </form>
-      <ul>
-
-      </ul>
     </div>
   )
 }

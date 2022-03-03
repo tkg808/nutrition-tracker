@@ -16,9 +16,11 @@ export default function Search()
     event.preventDefault();
     console.log("Sent!");
 
-    const url = `https://api.nal.usda.gov/fdc/v1/foods/search?query=${searchInput}&pageSize=20&api_key=${process.env.REACT_APP_USDA_KEY}`
+    const url = `https://api.calorieninjas.com/v1/nutrition?query=${searchInput}`
 
-    fetch(url)
+    fetch(url, {
+      headers: { 'X-Api-Key': process.env.REACT_APP_API_KEY }
+    })
       .then((response) =>
       {
         return response.json();
@@ -42,6 +44,7 @@ export default function Search()
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
+      <SearchResults />
     </div>
   )
 }
