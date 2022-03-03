@@ -14,7 +14,7 @@ export default function SearchForm({ searchInput, handleChange, handleSubmit })
           onChange={handleChange}
           placeholder="search for a food"
           required />
-        <button type="submit">Find My Food!</button>
+        <button type="submit">Search</button>
       </form>
     </div>
   )
