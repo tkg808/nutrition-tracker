@@ -5,6 +5,7 @@ import SearchResults from './SearchResults';
 export default function Search()
 {
   const [searchInput, setSearchInput] = useState("");
+  const [foodResult, setFoodResult] = useState(null);
 
   function handleChange(event)
   {
@@ -27,7 +28,7 @@ export default function Search()
       })
       .then((data) =>
       {
-        console.log(data);
+        setFoodResult(data);
       })
       .catch((error) =>
       {
@@ -36,6 +37,7 @@ export default function Search()
   }
 
   console.log(searchInput);
+  console.log(foodResult);
 
   return (
     <div className="search-container">
@@ -44,7 +46,7 @@ export default function Search()
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      <SearchResults />
+      <SearchResults foodResult={foodResult} />
     </div>
   )
 }
