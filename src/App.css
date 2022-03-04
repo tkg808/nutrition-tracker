@@ -1,8 +1,93 @@
-.App {
-  text-align: center;
+*
+{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.empty-list
+body
+{
+  width: 100vw;
+  height: 100vh;
+}
+
+header
+{
+  width: 100%;
+  background-color: bisque;
+  display: flex;
+}
+
+.app-name
+{
+  padding: 0 0 5px 0;
+  align-self: flex-end;
+  font-size: 36px;
+}
+
+img.apple
+{
+  width: 10%;
+  height: 10%;
+  padding: 5px;
+}
+
+nav
+{
+  padding: 5px 10px;
+  background-color: antiquewhite;
+}
+
+a
+{
+  padding-right: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+a:hover, button
+{
+  cursor: pointer;
+}
+
+.summary-container
+{
+  padding: 5px 15px;
+}
+
+.summary-container p
+{
+  padding-left: 10px;
+}
+
+.list-container
+{
+  padding: 5px 15px;
+}
+
+.food-item
+{
+  width: 60%;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+}
+
+button#remove-food
+{
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+}
+
+ul
+{
+  list-style-type: none;
+}
+
+img.empty
 {
   width: 20%;
   height: 20%;

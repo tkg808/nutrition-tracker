@@ -11,7 +11,10 @@ export default function App()
 
   return (
     <div className="App">
-      <header>Nutrition Tracker</header>
+      <header>
+        <img className="apple" src="https://cdn.pixabay.com/photo/2013/07/12/19/17/apple-154492_1280.png" alt="apple-a-day" />
+        <h1 className="app-name">Nutrition Tracker</h1>
+      </header>
       <nav>
         <Link to="/">Home</Link>
         <Link to="/search">Search</Link>

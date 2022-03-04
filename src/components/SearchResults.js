@@ -22,7 +22,7 @@ export default function SearchResults({ searchResults, handleAdd })
     }) :
     <img
       src="https://media.giphy.com/media/WsMOkoJpQEgF0HHLfH/giphy.gif"
-      className="empty-list">
+      className="empty">
     </img>
   )
 }
