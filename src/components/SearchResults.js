@@ -4,10 +4,10 @@ export default function SearchResults({ searchResults, handleAdd })
 {
 
   return (searchResults.length ?
-    searchResults.map((food, key) =>
+    searchResults.map((food, index) =>
     {
       return (
-        <div className="nutrition-facts" key={key}>
+        <div className="nutrition-facts" key={index} listindex={index}>
           <h2> {food.name.toUpperCase()}</h2>
           <p>Serving Size: {food.serving_size_g}g</p>
           <h3>Calories: {food.calories}</h3>

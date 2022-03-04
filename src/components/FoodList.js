@@ -12,7 +12,7 @@ export default function FoodList({ userFoods, handleRemove })
             {
               return (
                 <li className="food-item" key={index} listindex={index}>
-                  <h2> {food.name.toUpperCase()}</h2>
+                  <h2> {food.name}</h2>
                   <p>Serving Size: {food.serving_size_g}g</p>
                   <h3>Calories: {food.calories}</h3>
                   <h4>Fats: {food.fat_total_g}g</h4>

@@ -37,9 +37,15 @@ export default function Search()
       })
   }
 
-  function handleAdd()
+  function handleAdd(event)
   {
-    setUserFoods([...userFoods, searchResults]);
+    const index = event.target.parentElement.attributes.listindex.value;
+
+    const newArray = [...searchResults];
+    setUserFoods([...userFoods, newArray[index]]);
+
+    newArray.splice(index, 1);
+    setSearchResults([...newArray]);
   }
 
   return (
