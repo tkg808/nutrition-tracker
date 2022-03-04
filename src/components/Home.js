@@ -9,8 +9,15 @@ export default function Home()
 
   function handleRemove(event)
   {
-    console.log(event.target.parentElement.attributes.listindex.value);
+    const index = event.target.parentElement.attributes.listindex.value;
+
+    const newArray = [...userFoods];
+    newArray.splice(index, 1);
+
+    setUserFoods([...newArray]);
   }
+
+  console.log(userFoods);
 
   return (
     <div>

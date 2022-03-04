@@ -9,9 +9,6 @@ export default function App()
 {
   const [userFoods, setUserFoods] = useState([]);
 
-  console.log(userFoods);
-  console.log(typeof userFoods);
-
   return (
     <div className="App">
       <header>Nutrition Tracker</header>
