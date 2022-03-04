@@ -12,8 +12,6 @@ export default function SearchResults({ foodResult, handleAdd })
     )
   }
 
-  // const food = foodResult.items[0];
-
   return (
     foodResult ?
       <div className="nutrition-facts">

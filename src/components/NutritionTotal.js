@@ -2,7 +2,6 @@ import React from 'react';
 
 export default function NutritionTotal({ totals })
 {
-
   return (
     <div>
       <h3>Total Nutrition</h3>
