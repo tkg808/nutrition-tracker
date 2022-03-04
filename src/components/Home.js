@@ -25,7 +25,7 @@ export default function Home()
 
   function handleRemove(event)
   {
-    const index = event.target.parentElement.parentElement.attributes.listindex.value;
+    const index = event.target.parentElement.parentElement.parentElement.attributes.listindex.value;
 
     const newArray = [...userFoods];
     newArray.splice(index, 1);

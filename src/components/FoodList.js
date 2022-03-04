@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa'
 
 export default function FoodList({ userFoods, handleRemove })
 {
@@ -14,24 +14,21 @@ export default function FoodList({ userFoods, handleRemove })
               return (
                 <li className="food-item" key={index} listindex={index}>
                   <div className="item-header">
-                    <FaTrashAlt
-                      id="remove-food"
-                      onClick={handleRemove}
-                      style={{ color: "red" }} />
-                    <h4 className="item-name"> {food.name.toUpperCase()} - {food.calories} calories</h4>
+                    <h4 className="item-name">
+                      {food.name.toUpperCase()} - {food.calories} calories
+                    </h4>
+                    <div className="item-icons">
+                      <FaTrashAlt
+                        id="remove-food"
+                        onClick={handleRemove}
+                        style={{ color: "red" }} />
+                    </div>
                   </div>
-                  <p>Serving Size: {food.serving_size_g.toFixed(1)}g</p>
+                  <p className="item-servings">Serving Size: {food.serving_size_g.toFixed(1)}g</p>
                   <div className="item-macros">
-                    <div className="fats">
-                      <p>Fats: {food.fat_total_g}g</p>
-                      <p>Saturated Fats: {food.fat_saturated_g}g</p>
-                    </div>
-                    <div className="carbs">
-                      <p>Carbs: {food.carbohydrates_total_g}g</p>
-                      <p>Sugar: {food.sugar_g}g</p>
-                      <p>Fiber: {food.fiber_g}g</p>
-                    </div>
-                    <p className="protein">Protein: {food.protein_g}g</p>
+                    <p>Fats: {food.fat_total_g}g</p>
+                    <p>Carbs: {food.carbohydrates_total_g}g</p>
+                    <p>Protein: {food.protein_g}g</p>
                   </div>
                 </li>
               )
