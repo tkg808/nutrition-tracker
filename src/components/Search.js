@@ -39,11 +39,14 @@ export default function Search()
 
   function handleAdd(event)
   {
-    const index = event.target.parentElement.attributes.listindex.value;
+    // index of the food item associated with the icon clicked.
+    const index = event.target.parentElement.parentElement.parentElement.attributes.listindex.value;
 
+    // updates UserContext without directly accessing it.
     const newArray = [...searchResults];
     setUserFoods([...userFoods, newArray[index]]);
 
+    // updates SearchResults state without directly accessing it.
     newArray.splice(index, 1);
     setSearchResults([...newArray]);
   }

@@ -25,11 +25,12 @@ export default function Home()
 
   function handleRemove(event)
   {
+    // index of the food item associated to the icon clicked.
     const index = event.target.parentElement.parentElement.parentElement.attributes.listindex.value;
 
+    // removes clicked food item and updates UserContext without directly accessing it.
     const newArray = [...userFoods];
     newArray.splice(index, 1);
-
     setUserFoods([...newArray]);
   }
 
