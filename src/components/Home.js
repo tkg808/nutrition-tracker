@@ -7,6 +7,22 @@ export default function Home()
 {
   const { userFoods, setUserFoods } = useContext(UserContext);
 
+  const totals =
+  {
+    "calories": 0,
+    "fats": 0,
+    "carbs": 0,
+    "proteins": 0
+  }
+
+  userFoods.forEach((food) => 
+  {
+    totals.calories += food.calories;
+    totals.fats += food.fat_total_g;
+    totals.carbs += food.carbohydrates_total_g;
+    totals.proteins += food.protein_g;
+  })
+
   function handleRemove(event)
   {
     const index = event.target.parentElement.attributes.listindex.value;
@@ -17,14 +33,10 @@ export default function Home()
     setUserFoods([...newArray]);
   }
 
-  console.log(userFoods);
-
   return (
     <div>
-      <NutritionTotal />
-      <FoodList
-        userFoods={userFoods}
-        handleRemove={handleRemove} />
+      <NutritionTotal totals={totals} />
+      <FoodList userFoods={userFoods} handleRemove={handleRemove} />
     </div>
   )
 }

@@ -1,14 +1,15 @@
 import React from 'react';
 
-export default function NutritionTotal()
+export default function NutritionTotal({ totals })
 {
+
   return (
     <div>
       <h3>Total Nutrition</h3>
-      <p>Total Calories: </p>
-      <p>Total Proteins: </p>
-      <p>Total Fats: </p>
-      <p>Total Carbs: </p>
+      <p>Total Calories: {totals.calories}g</p>
+      <p>Total Fats: {totals.fats}g</p>
+      <p>Total Carbs: {totals.carbs}g</p>
+      <p>Total Proteins: {totals.proteins}g</p>
     </div>
   )
 }
