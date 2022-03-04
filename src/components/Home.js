@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import NutritionTotal from './NutritionTotal';
 import FoodList from './FoodList';
 import { UserContext } from '../UserContext';
@@ -9,7 +9,7 @@ export default function Home()
 
   function handleRemove(event)
   {
-    console.log(event.target);
+    console.log(event.target.parentElement.attributes.listindex.value);
   }
 
   return (

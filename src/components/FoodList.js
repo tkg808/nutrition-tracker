@@ -11,7 +11,7 @@ export default function FoodList({ userFoods, handleRemove })
             {userFoods.map((food, index) =>
             {
               return (
-                <li className="food-item" id={index}>
+                <li className="food-item" key={index} listindex={index}>
                   <h2> {food.name.toUpperCase()}</h2>
                   <p>Serving Size: {food.serving_size_g}g</p>
                   <h3>Calories: {food.calories}</h3>
@@ -30,7 +30,6 @@ export default function FoodList({ userFoods, handleRemove })
             <img
               src="https://media.giphy.com/media/WsMOkoJpQEgF0HHLfH/giphy.gif"
               className="empty-list">
-
             </img>
             <p>Try adding some foods to your list...</p>
           </>
