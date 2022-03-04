@@ -6,7 +6,7 @@ import { UserContext } from '../UserContext';
 export default function Search()
 {
   const [searchInput, setSearchInput] = useState("");
-  const [foodResult, setFoodResult] = useState(null);
+  const [searchResults, setSearchResults] = useState([]);
   const { userFoods, setUserFoods } = useContext(UserContext);
 
   function handleChange(event)
@@ -28,7 +28,8 @@ export default function Search()
       })
       .then((data) =>
       {
-        setFoodResult(data.items[0]);
+        setSearchResults(data.items);
+        console.log(data.items);
       })
       .catch((error) =>
       {
@@ -38,7 +39,7 @@ export default function Search()
 
   function handleAdd()
   {
-    setUserFoods([...userFoods, foodResult]);
+    setUserFoods([...userFoods, searchResults]);
   }
 
   return (
@@ -49,7 +50,7 @@ export default function Search()
         handleSubmit={handleSubmit}
       />
       <SearchResults
-        foodResult={foodResult}
+        searchResults={searchResults}
         handleAdd={handleAdd} />
     </div>
   )
