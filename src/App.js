@@ -4,10 +4,18 @@ import Home from './components/Home';
 import Search from './components/Search';
 import { useState } from 'react';
 import { UserContext } from './UserContext';
+import { FaRegQuestionCircle } from 'react-icons/fa';
+import Help from './components/Help';
 
 export default function App()
 {
   const [userFoods, setUserFoods] = useState([]);
+  const [showHelp, setShowHelp] = useState(false);
+
+  function handleHelp()
+  {
+    setShowHelp(!showHelp);
+  }
 
   return (
     <div className="App">
@@ -16,8 +24,11 @@ export default function App()
         <h1 className="app-name">Nutrition Tracker</h1>
       </header>
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/search">Search</Link>
+        <div className="links">
+          <Link to="/">Home</Link>
+          <Link to="/search">Search</Link>
+        </div>
+        <FaRegQuestionCircle id="help-icon" onClick={handleHelp} />
       </nav>
       <UserContext.Provider value={{ userFoods, setUserFoods }}>
         <main>
@@ -27,6 +38,7 @@ export default function App()
           </Routes>
         </main>
       </UserContext.Provider>
+      {!showHelp ? null : <Help handleHelp={handleHelp} />}
     </div>
   );
 }

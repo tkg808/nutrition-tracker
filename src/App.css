@@ -33,6 +33,8 @@ img.apple
 nav
 {
   padding: 5px 15px;
+  display: flex;
+  justify-content: space-between;
   background-color: antiquewhite;
 }
 
@@ -43,9 +45,28 @@ a
   text-decoration: none;
 }
 
-a:hover, button, #remove-food, #add-food
+a:hover, button, #remove-food, #add-food, #help-icon
 {
   cursor: pointer;
+}
+
+.help-dialogue
+{
+  min-width: 375px;
+  width: 40%;
+  line-height: 1.3;
+}
+
+.help-header
+{
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.help-dialogue p
+{
+  padding: 0 10px;
 }
 
 h2
