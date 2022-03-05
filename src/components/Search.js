@@ -29,7 +29,6 @@ export default function Search()
       .then((data) =>
       {
         setSearchResults(data.items);
-        console.log(data.items);
       })
       .catch((error) =>
       {
@@ -39,8 +38,13 @@ export default function Search()
 
   function handleAdd(event)
   {
+    console.log(event.target.tagName);
     // index of the food item associated with the icon clicked.
-    const index = event.target.parentElement.parentElement.parentElement.attributes.listindex.value;
+    // temporary solution to click inconsistently targeting svg or path.
+    const index = (event.target.tagName === "svg" ?
+      event.target.parentElement.parentElement.parentElement.attributes.listindex.value :
+      event.target.parentElement.parentElement.parentElement.parentElement.attributes.listindex.value);
+    // const index = event.target.parentElement.parentElement.parentElement.parentElement.attributes.listindex.value;
 
     // updates UserContext without directly accessing it.
     const newArray = [...searchResults];
@@ -50,6 +54,8 @@ export default function Search()
     newArray.splice(index, 1);
     setSearchResults([...newArray]);
   }
+
+  console.log(searchResults);
 
   return (
     <div className="search-container">

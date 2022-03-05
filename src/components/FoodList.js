@@ -39,7 +39,7 @@ export default function FoodList({ userFoods, handleRemove })
               src="https://media.giphy.com/media/WsMOkoJpQEgF0HHLfH/giphy.gif"
               className="empty">
             </img>
-            <p>No food?! Go "Search" for food to add to this list...</p>
+            <p>Search for foods/meals to add to this list...</p>
           </>
       }
     </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import NutritionTotal from './NutritionTotal';
 import FoodList from './FoodList';
 import { UserContext } from '../UserContext';
@@ -25,14 +25,20 @@ export default function Home()
 
   function handleRemove(event)
   {
-    // index of the food item associated to the icon clicked.
-    const index = event.target.parentElement.parentElement.parentElement.attributes.listindex.value;
+    console.log(event.target.tagName);
+    // index of the food item associated with the icon clicked.
+    // temporary solution to click inconsistently targeting svg or path.
+    const index = (event.target.tagName === "svg" ?
+      event.target.parentElement.parentElement.parentElement.attributes.listindex.value :
+      event.target.parentElement.parentElement.parentElement.parentElement.attributes.listindex.value);
 
     // removes clicked food item and updates UserContext without directly accessing it.
     const newArray = [...userFoods];
     newArray.splice(index, 1);
     setUserFoods([...newArray]);
   }
+
+  console.log(userFoods);
 
   return (
     <div>

@@ -43,7 +43,7 @@ a
   text-decoration: none;
 }
 
-a:hover, button, #remove-food
+a:hover, button, #remove-food, #add-food
 {
   cursor: pointer;
 }
@@ -110,4 +110,22 @@ img.empty
 {
   width: 20%;
   height: 20%;
+}
+
+.search-container
+{
+  padding: 0 10px;
+}
+
+.form-container
+{
+  padding: 10px;
+}
+
+form
+{
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

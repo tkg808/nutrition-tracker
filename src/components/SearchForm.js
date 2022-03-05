@@ -4,15 +4,17 @@ export default function SearchForm({ searchInput, handleChange, handleSubmit })
 {
 
   return (
-    <div className="search-container">
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
         <label htmlFor="search-input"></label>
-        <input
+        <textarea
           type="text"
           id="search-input"
           value={searchInput}
           onChange={handleChange}
-          placeholder="search for a food"
+          rows="5"
+          cols="40"
+          placeholder="Example: 8oz steak, 2 eggs, and rice"
           required />
         <button type="submit">Search</button>
       </form>
