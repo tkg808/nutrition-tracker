@@ -28,7 +28,10 @@ export default function App()
           <Link to="/">Home</Link>
           <Link to="/search">Search</Link>
         </div>
-        <FaRegQuestionCircle id="help-icon" onClick={handleHelp} />
+        <FaRegQuestionCircle
+          id="help-icon"
+          onClick={handleHelp}
+          style={showHelp ? { color: "red" } : { color: "green" }} />
       </nav>
       <UserContext.Provider value={{ userFoods, setUserFoods }}>
         <main>

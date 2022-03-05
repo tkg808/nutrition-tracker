@@ -50,23 +50,40 @@ a:hover, button, #remove-food, #add-food, #help-icon
   cursor: pointer;
 }
 
-.help-dialogue
+.help-container
 {
+  max-width: 450px;
   min-width: 375px;
-  width: 40%;
+  position: absolute;
+  top: 85px;
+  right: 5px;
   line-height: 1.3;
+  font-size: 14px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 5%;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
 }
 
-.help-header
+.help-steps span
 {
-  padding: 0 10px;
-  display: flex;
-  justify-content: space-between;
+  font-weight: 600;
 }
 
-.help-dialogue p
+.help-tips span
 {
-  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.help-steps, .help-tips
+{
+  padding: 5px 0 5px 10px;
+}
+
+.help-steps h3, .help-tips h3
+{
+  text-align: center;
 }
 
 h2
