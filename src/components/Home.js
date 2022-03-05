@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import NutritionTotal from './NutritionTotal';
+import NutritionTotals from './NutritionTotals';
 import FoodList from './FoodList';
 import { UserContext } from '../UserContext';
 
 export default function Home()
 {
   const { userFoods, setUserFoods } = useContext(UserContext);
+  // const { showFullView, setShowFullView } = 
 
   const totals =
   {
@@ -25,7 +26,6 @@ export default function Home()
 
   function handleRemove(event)
   {
-    console.log(event.target.tagName);
     // index of the food item associated with the icon clicked.
     // temporary solution to click inconsistently targeting svg or path.
     const index = (event.target.tagName === "svg" ?
@@ -38,11 +38,9 @@ export default function Home()
     setUserFoods([...newArray]);
   }
 
-  console.log(userFoods);
-
   return (
     <div>
-      <NutritionTotal totals={totals} />
+      <NutritionTotals totals={totals} />
       <FoodList userFoods={userFoods} handleRemove={handleRemove} />
     </div>
   )

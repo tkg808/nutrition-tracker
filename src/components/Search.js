@@ -58,7 +58,7 @@ export default function Search()
     // resets state before fetching new data.
     dispatch({ type: "loading" });
 
-    const url = `https://api.calorieninjas.com/v1/nutrition?query=${searchInput}`
+    const url = `https://api.calorieninjas.com/v1/nutrition?query=${searchInput}`;
 
     fetch(url, { headers: { 'X-Api-Key': process.env.REACT_APP_API_KEY } })
       .then((response) =>
