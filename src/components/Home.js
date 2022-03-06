@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import NutritionTotals from './NutritionTotals';
 import FoodList from './FoodList';
 import { UserContext } from '../UserContext';
@@ -6,7 +6,6 @@ import { UserContext } from '../UserContext';
 export default function Home()
 {
   const { userFoods, setUserFoods } = useContext(UserContext);
-  // const { showFullView, setShowFullView } = 
 
   const totals =
   {

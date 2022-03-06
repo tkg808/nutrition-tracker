@@ -6,6 +6,7 @@ import { useState, useEFfect, useEffect } from 'react';
 import { UserContext } from './UserContext';
 import { FaRegQuestionCircle, FaGithub } from 'react-icons/fa';
 import Help from './components/Help';
+import Settings from './components/Settings';
 
 export default function App()
 {
@@ -40,6 +41,7 @@ export default function App()
         <div className="links">
           <Link to="/">Home</Link>
           <Link to="/search">Search</Link>
+          <Link to="/settings">Settings</Link>
         </div>
         <FaRegQuestionCircle
           id="help-icon"
@@ -51,6 +53,7 @@ export default function App()
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </main>
       </UserContext.Provider>
