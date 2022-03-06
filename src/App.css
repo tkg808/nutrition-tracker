@@ -155,16 +155,6 @@ img.empty
   height: 20%;
 }
 
-.search-container
-{
-  padding: 0 10px;
-}
-
-.form-container
-{
-  padding: 10px;
-}
-
 form
 {
   gap: 10px;
@@ -172,6 +162,28 @@ form
   flex-direction: column;
   align-items: center;
 }
+
+.search-container
+{
+  padding: 0 10px;
+}
+
+.search-form, .settings-form
+{
+  padding: 10px;
+}
+
+.settings-form input, select
+{
+  text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+{
+  -webkit-appearance: none;
+}
+
 
 footer
 {
@@ -187,3 +199,4 @@ footer a
 {
   font-weight: 600;
 }
+

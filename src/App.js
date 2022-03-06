@@ -7,6 +7,7 @@ import { UserContext } from './UserContext';
 import { FaRegQuestionCircle, FaGithub } from 'react-icons/fa';
 import Help from './components/Help';
 import Settings from './components/Settings';
+import { UserSettings } from './UserSettings';
 
 export default function App()
 {
@@ -48,15 +49,17 @@ export default function App()
           onClick={handleHelp}
           style={showHelp ? { color: "red" } : { color: "green" }} />
       </nav>
-      <UserContext.Provider value={{ userFoods, setUserFoods }}>
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/settings" element={<Settings />} />
-          </Routes>
-        </main>
-      </UserContext.Provider>
+      <UserSettings.Provider value={UserSettings}>
+        <UserContext.Provider value={{ userFoods, setUserFoods }}>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
+          </main>
+        </UserContext.Provider>
+      </UserSettings.Provider>
       {!showHelp ? null : <Help handleHelp={handleHelp} />}
       <footer>
         <h4>© 2022</h4>

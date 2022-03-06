@@ -4,7 +4,7 @@ export default function SearchForm({ searchInput, handleChange, handleSubmit })
 {
 
   return (
-    <div className="form-container">
+    <div className="search-form">
       <form onSubmit={handleSubmit}>
         <label htmlFor="search-input"></label>
         <textarea
