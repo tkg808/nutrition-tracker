@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Search from './components/Search';
 import { useState, useEFfect, useEffect } from 'react';
 import { UserContext } from './UserContext';
-import { FaRegQuestionCircle } from 'react-icons/fa';
+import { FaRegQuestionCircle, FaGithub } from 'react-icons/fa';
 import Help from './components/Help';
 
 export default function App()
@@ -55,6 +55,10 @@ export default function App()
         </main>
       </UserContext.Provider>
       {!showHelp ? null : <Help handleHelp={handleHelp} />}
+      <footer>
+        <h4>© 2022</h4>
+        <a href="https://github.com/tkg808" target="_blank" rel="noreferrer noopener">Github</a>
+      </footer>
     </div>
   );
 }
