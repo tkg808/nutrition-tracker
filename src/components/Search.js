@@ -71,7 +71,7 @@ export default function Search()
           return dispatch(
             {
               type: "error",
-              error: `No result for for ${searchInput}. Please try another search!`
+              error: `No results for ${searchInput}. Please try another search!`
             });
         }
         else if (response.status === 200)
@@ -81,6 +81,14 @@ export default function Search()
       })
       .then((data) =>
       {
+        if (data.items.length === 0)
+        {
+          return dispatch(
+            {
+              type: "error",
+              error: `No results for ${searchInput}. Please try another search!`
+            });
+        }
         dispatch({ type: "success", data });
       })
       .catch((error) =>
@@ -109,6 +117,8 @@ export default function Search()
     dispatch({ type: "update", newArray })
   }
 
+  console.log(error);
+
   return (
     <div className="search-container">
       <SearchForm
@@ -116,9 +126,14 @@ export default function Search()
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      <SearchResults
+      <h2>Search Results</h2>
+      {searchResults && <SearchResults
         searchResults={searchResults}
-        handleAdd={handleAdd} />
-    </div>
+        handleAdd={handleAdd} />}
+      {!loading && !searchResults && !error &&
+        <p className="search-tip">Try searching for a food/meal above...</p>}
+      {loading && <p className="loading-tip">Looking for your food(s) now!</p>}
+      {error && error}
+    </div >
   )
 }
