@@ -72,6 +72,7 @@ export default function App()
           <Link to="/settings">Settings</Link>
         </div>
         <FaRegQuestionCircle
+          className="icon"
           id="help-icon"
           onClick={handleHelp}
           style={showHelp ? { color: "red" } : { color: "green" }} />

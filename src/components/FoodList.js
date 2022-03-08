@@ -19,6 +19,7 @@ export default function FoodList({ userFoods, handleRemove })
                     </h4>
                     <div className="item-icons">
                       <FaTrashAlt
+                        className="icon"
                         id="remove-food"
                         onClick={handleRemove}
                         style={{ color: "red" }} />

@@ -43,8 +43,10 @@ export default function Home()
     <div className="home-container">
       <div className="summary-container">
         <h2>Nutrition Summary</h2>
-        <h4>Daily Caloric Needs:
+        <h4>BMR:
           {userSettings.bmr() < 6 ? " ~" : ` ${userSettings.bmr()} cals`}</h4>
+        <h4>Daily Calorie Needs:
+          {userSettings.dailyCalories() < 6 ? " ~" : ` ${userSettings.dailyCalories()} cals`}</h4>
         <NutritionTotals totals={totals} />
       </div>
       <FoodList userFoods={userFoods} handleRemove={handleRemove} />

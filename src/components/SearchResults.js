@@ -19,6 +19,7 @@ export default function SearchResults({ searchResults, handleAdd })
                     </h4>
                     <div className="item-icons">
                       <FaPlusCircle
+                        className="icon"
                         id="add-food"
                         onClick={handleAdd}
                         style={{ color: "green" }} />
