@@ -130,8 +130,7 @@ export default function Search()
       {searchResults && <SearchResults
         searchResults={searchResults}
         handleAdd={handleAdd} />}
-      {!loading && !searchResults && !error &&
-        <p className="search-tip">Try searching for a food/meal above...</p>}
+      {!loading && !searchResults.length && !error && <p className="search-tip">Try searching for a food/meal above...</p>}
       {loading && <p className="loading-tip">Looking for your food(s) now!</p>}
       {error && error}
     </div >
