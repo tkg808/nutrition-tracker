@@ -6,9 +6,10 @@ export default function Help({ handleHelp })
     <div className="help-container">
       <div className="help-steps">
         <h3>Instructions</h3>
-        <p><span>Step 1:</span> Search for food or drink items.</p>
-        <p><span>Step 2:</span> Add Search Results to your List of Foods</p>
-        <p><span>Step 3:</span> View your total calories and macronutrients in Nutritional Summary.</p>
+        <p><span>Step 1:</span> Enter info in settings. </p>
+        <p><span>Step 2:</span> Search for food or drink items.</p>
+        <p><span>Step 3:</span> Add Search Results to your List of Foods</p>
+        <p><span>Step 4:</span> View your total calories and macronutrients in Nutritional Summary.</p>
       </div>
       <div className="help-tips">
         <h3>Tips</h3>
