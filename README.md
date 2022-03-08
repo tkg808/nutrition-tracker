@@ -40,17 +40,17 @@ npm start
 
 ## Contribution Guidelines
 
-#### How to Contribute
+### How to Contribute
 
 Feel free to contribute to this app with code or suggestions. If you would like to contribute code - install the app, checkout to a dev branch, play with the code, then submit a pull request.
 
-#### How to Identify Bugs
+### How to Identify Bugs
 
 You can submit an issue on the git repo, or work on a dev branch and submit a pull request with suggested code to fix the bug. Please detail the bug and recommendations for solutions if possible.
 
-#### How to Propose Improvements
+### How to Propose Improvements
 
-You can submit an issue on the git repository.
+You can submit an issue on the git repository detailing your suggestion.
 
 ## Wireframes
 
@@ -59,7 +59,7 @@ You can submit an issue on the git repository.
 
 ## User Stories
 
-#### MVP Goals
+### MVP Goals
 
 * As a user, I want to be able to search for nutritional information on the foods that I eat to easily keep track of my diet.
 * As the user, I want to be able to see a list of all the foods I have eaten for the day so I can better track my diet.
@@ -68,7 +68,7 @@ You can submit an issue on the git repository.
 * As the user, I want to be able to remove foods from my list so I don't need to refresh the app if I accidentally added something.
 * As the user, I want to be able to see a running total of nutritional data for all the foods in my list to better track my diet throughout the day.
 
-#### Stretch Goals
+### Stretch Goals
 
 * As a user, I would like to be able to calculate my basal metabolic rate and my daily caloric needs based on my level of activity so I can better track my diet throughout the day.
 * As a user, I would like to calculate my macronutrient needs so I can be more precise with my diet.
