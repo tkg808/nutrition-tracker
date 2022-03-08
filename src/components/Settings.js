@@ -28,8 +28,8 @@ export default function Settings()
   return (
     <div className="settings-container">
       <SettingsForm userSettings={userSettings} handleSettingsSubmit={handleSettingsSubmit} />
-      {userSettings.bmr() > 5 &&
-        <p className="bmr">Your Basal Metabolic Rate (BMR) is {userSettings.bmr()}, and according to your activity level, you need around {userSettings.dailyCalories()} calories per day.</p>}
+      <h4 className="bmr">Basal Metabolic Rate (BMR): {userSettings.bmr() < 6 ? "~" : `${userSettings.bmr()} cals`}</h4>
+      <h4 className="bmr">Daily Caloric Needs: {userSettings.bmr() < 6 ? "~" : `${userSettings.dailyCalories()} cals`}</h4>
 
     </div>
   );
