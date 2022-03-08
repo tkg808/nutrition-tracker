@@ -2,10 +2,12 @@ import React, { useContext, useState } from 'react';
 import NutritionTotals from './NutritionTotals';
 import FoodList from './FoodList';
 import { UserContext } from '../UserContext';
+import { UserSettings } from '../UserSettings';
 
 export default function Home()
 {
   const { userFoods, setUserFoods } = useContext(UserContext);
+  const { userSettings } = useContext(UserSettings);
 
   const totals =
   {
@@ -38,8 +40,13 @@ export default function Home()
   }
 
   return (
-    <div>
-      <NutritionTotals totals={totals} />
+    <div className="home-container">
+      <div className="summary-container">
+        <h2>Nutrition Summary</h2>
+        <h4>Daily Caloric Needs:
+          {userSettings.bmr() < 6 ? " ~" : ` ${userSettings.bmr()} cals`}</h4>
+        <NutritionTotals totals={totals} />
+      </div>
       <FoodList userFoods={userFoods} handleRemove={handleRemove} />
     </div>
   )
