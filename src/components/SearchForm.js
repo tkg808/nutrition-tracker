@@ -2,7 +2,6 @@ import React from 'react';
 
 export default function SearchForm({ searchInput, handleChange, handleSubmit })
 {
-
   return (
     <div className="search-form">
       <form onSubmit={handleSubmit}>

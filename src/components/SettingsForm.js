@@ -1,15 +1,11 @@
 import React from 'react';
 
-export default function SettingsForm({ userSettings, handleChange, handleSettingsSubmit })
+export default function SettingsForm({ userSettings, handleSettingsSubmit })
 {
-
   return (
     <form className="settings-form" onSubmit={handleSettingsSubmit}>
       <label htmlFor="gender">Gender: </label>
-      <select
-        id="gender"
-        value={userSettings.gender === "male" ? 0 : 1}
-        onChange={handleChange}>
+      <select id="gender">
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>

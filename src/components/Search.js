@@ -11,6 +11,7 @@ export default function Search()
   // context to track user food list.
   const { userFoods, setUserFoods } = useContext(UserContext);
 
+  // instantiates reducer.
   const initialState =
   {
     loading: false,
@@ -47,16 +48,16 @@ export default function Search()
     }
   }
 
+  // textarea.
   function handleChange(event)
   {
-    console.log(event);
-    console.log(event.target);
     setSearchInput(event.target.value);
   }
 
   function handleSubmit(event)
   {
     event.preventDefault();
+
     // resets state before fetching new data.
     dispatch({ type: "loading" });
 
@@ -81,6 +82,7 @@ export default function Search()
       })
       .then((data) =>
       {
+        // fixes issue of bad input not being an error.
         if (data.items.length === 0)
         {
           return dispatch(
@@ -89,6 +91,7 @@ export default function Search()
               error: `No results for ${searchInput}. Please try another search!`
             });
         }
+
         dispatch({ type: "success", data });
       })
       .catch((error) =>
@@ -103,7 +106,7 @@ export default function Search()
   function handleAdd(event)
   {
     // index of the food item associated with the icon clicked.
-    // temporary solution to click inconsistently targeting svg or path.
+    // Solution for pointer event inconsistently targetting svg or path.
     const index = (event.target.tagName === "svg" ?
       event.target.parentElement.parentElement.parentElement.attributes.listindex.value :
       event.target.parentElement.parentElement.parentElement.parentElement.attributes.listindex.value);
@@ -112,12 +115,10 @@ export default function Search()
     const newArray = [...searchResults];
     setUserFoods([...userFoods, newArray[index]]);
 
-    // updates SearchResults state without directly accessing it.
+    // updates searchResults state without directly accessing it.
     newArray.splice(index, 1);
     dispatch({ type: "update", newArray })
   }
-
-  console.log(error);
 
   return (
     <div className="search-container">

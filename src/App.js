@@ -2,15 +2,16 @@ import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Search from './components/Search';
-import { useState, useEFfect, useEffect } from 'react';
+import { useState } from 'react';
 import { UserContext } from './UserContext';
-import { FaRegQuestionCircle, FaGithub } from 'react-icons/fa';
+import { FaRegQuestionCircle } from 'react-icons/fa';
 import Help from './components/Help';
 import Settings from './components/Settings';
 import { UserSettings } from './UserSettings';
 
 export default function App()
 {
+  // instantiates UserSettings context.
   const initialSettings =
   {
     gender: "male",
@@ -37,15 +38,20 @@ export default function App()
     }
   };
 
+  // instantiates contexts.
   const [userFoods, setUserFoods] = useState([]);
   const [userSettings, setUserSettings] = useState(initialSettings);
+
+  // toggles help window.
   const [showHelp, setShowHelp] = useState(false);
 
+  // help-icon click event.
   function handleHelp()
   {
     setShowHelp(!showHelp);
   }
 
+  // click anywhere in app to close help window.
   function handleClose()
   {
     if (showHelp)
@@ -53,11 +59,6 @@ export default function App()
       setShowHelp(false);
     }
   }
-
-  useEffect(() =>
-  {
-    setShowHelp(false);
-  }, [userFoods])
 
   return (
     <div className="App" onClick={handleClose}>

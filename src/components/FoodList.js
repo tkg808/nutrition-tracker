@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaTrashAlt, FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa'
+import { FaTrashAlt } from 'react-icons/fa'
 
 export default function FoodList({ userFoods, handleRemove })
 {

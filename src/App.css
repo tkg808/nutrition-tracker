@@ -10,10 +10,6 @@
   --primary: #7f5539;
   --secondary: #fdf0d4;
   --accent: #ddb892;
-  --error: red;
-  --warning: orange;
-  --success: green;
-  --darkText: black;
   --lightText: white;
 }
 
@@ -28,7 +24,7 @@ header
   height: 50px;
   width: 100%;
   min-width: 375px;
-  color: white;
+  color: var(--lightText);
   background-color: var(--primary);
   display: flex;
 }
@@ -212,14 +208,6 @@ ul
   list-style-type: none;
 }
 
-img.empty
-{
-  width: 30%;
-  min-width: 100px;
-  height: 30%;
-  min-height: 100px;
-}
-
 form
 {
   gap: 10px;
@@ -261,4 +249,3 @@ input::-webkit-inner-spin-button
 {
   padding: 10px;
 }
-

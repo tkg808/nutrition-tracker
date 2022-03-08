@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import NutritionTotals from './NutritionTotals';
 import FoodList from './FoodList';
 import { UserContext } from '../UserContext';
@@ -9,6 +9,7 @@ export default function Home()
   const { userFoods, setUserFoods } = useContext(UserContext);
   const { userSettings } = useContext(UserSettings);
 
+  // tracks data to render.
   const totals =
   {
     "calories": 0,
@@ -17,6 +18,7 @@ export default function Home()
     "proteins": 0
   }
 
+  // updates totals object.
   userFoods.forEach((food) => 
   {
     totals.calories += food.calories;
@@ -28,7 +30,7 @@ export default function Home()
   function handleRemove(event)
   {
     // index of the food item associated with the icon clicked.
-    // temporary solution to click inconsistently targeting svg or path.
+    // Solution for pointer event inconsistently targetting svg or path.
     const index = (event.target.tagName === "svg" ?
       event.target.parentElement.parentElement.parentElement.attributes.listindex.value :
       event.target.parentElement.parentElement.parentElement.parentElement.attributes.listindex.value);
