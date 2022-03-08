@@ -49,6 +49,8 @@ export default function Search()
 
   function handleChange(event)
   {
+    console.log(event);
+    console.log(event.target);
     setSearchInput(event.target.value);
   }
 
