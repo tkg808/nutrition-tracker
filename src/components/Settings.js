@@ -6,6 +6,13 @@ export default function Settings()
 {
   const { userSettings, setUserSettings } = useContext(UserSettings);
 
+  function handleChange(event)
+  {
+    const newSettings = { ...userSettings };
+    newSettings.gender = event.target.value;
+    setUserSettings({ ...newSettings });
+  }
+
   function handleSettingsSubmit(event)
   {
     event.preventDefault();
@@ -27,9 +34,11 @@ export default function Settings()
 
   return (
     <div className="settings-container">
-      <SettingsForm userSettings={userSettings} handleSettingsSubmit={handleSettingsSubmit} />
-      <h4 className="bmr">Basal Metabolic Rate (BMR): {userSettings.bmr() < 6 ? "~" : `${userSettings.bmr()} cals`}</h4>
-      <h4 className="bmr">Daily Caloric Needs: {userSettings.bmr() < 6 ? "~" : `${userSettings.dailyCalories()} cals`}</h4>
+      <SettingsForm userSettings={userSettings} handleChange={handleChange} handleSettingsSubmit={handleSettingsSubmit} />
+      <div className="info-container">
+        <h4 className="bmr">Basal Metabolic Rate (BMR): {userSettings.bmr() < 6 ? "~" : `${userSettings.bmr()} cals`}</h4>
+        <h4 className="daily-calories">Daily Caloric Needs: {userSettings.bmr() < 6 ? "~" : `${userSettings.dailyCalories()} cals`}</h4>
+      </div>
 
     </div>
   );

@@ -5,17 +5,19 @@
   box-sizing: border-box;
 }
 
-body, #root, .app
+body
 {
-  width: 100vw;
-  height: 100vh;
+  min-width: 375px;
+  background-color: #fdf0d4;
 }
 
 header
 {
   height: 50px;
   width: 100%;
-  background-color: bisque;
+  min-width: 375px;
+  color: white;
+  background-color: #7f5539;
   display: flex;
 }
 
@@ -32,16 +34,17 @@ img.apple
 
 nav
 {
-  padding: 5px 15px;
+  min-width: 375px;
+  padding: 5px 20px;
   display: flex;
   justify-content: space-between;
-  background-color: antiquewhite;
+  background-color: #ddb892;
 }
 
 a
 {
   padding-right: 10px;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
@@ -53,7 +56,7 @@ a:hover, button, #remove-food, #add-food, #help-icon
 .help-container
 {
   max-width: 450px;
-  min-width: 375px;
+  min-width: 350px;
   position: absolute;
   top: 85px;
   right: 5px;
@@ -86,39 +89,87 @@ a:hover, button, #remove-food, #add-food, #help-icon
   text-align: center;
 }
 
-main
+footer
 {
-  min-height: 1000px;
+  width: 100%;
+  min-width: 375px;
+  height: 25px;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  background-color: #ddb892;
+  
 }
 
-h2
+footer a
 {
-  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+main
+{
+  min-height: 600px;
+}
+
+.home-container
+{
+  min-width: 375px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .summary-container
 {
-  padding: 5px 15px;
+  min-width: 300px;
+  padding: 5px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white; 
+  border-radius: 10%;
+  border: 2px solid #7f5539;
 }
 
-.summary-container p
+.summary-container h4
 {
-  padding-left: 10px;
+  padding: 10px 0;
+}
+
+.totals-container
+{
   line-height: 1.5;
 }
 
 .list-container
 {
-  padding: 5px 15px;
+  min-width: 350px;
+  padding: 10px 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-container h2
+{
+  padding-bottom: 5px;
 }
 
 .food-item
 {
-  width: 40%;
-  min-width: 375px;
+  min-width: 350px;
   padding: 10px;
   margin: 5px 0;
-  border: 1px solid black;
+  background-color: white;
+  border-radius: 10%;
+  border-left: 2px solid #7f5539;
+  border-right: 2px solid #7f5539;
 }
 
 .item-header
@@ -138,12 +189,6 @@ h2
   gap: 20px;
 }
 
-.fats, .carbs, .protein
-{
-  display: flex;
-  flex-direction: column;
-}
-
 ul
 {
   list-style-type: none;
@@ -151,8 +196,10 @@ ul
 
 img.empty
 {
-  width: 20%;
-  height: 20%;
+  width: 30%;
+  min-width: 100px;
+  height: 30%;
+  min-height: 100px;
 }
 
 form
@@ -184,19 +231,13 @@ input::-webkit-inner-spin-button
   -webkit-appearance: none;
 }
 
-
-footer
+.info-container
 {
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: bisque;
+  text-align: center;
 }
 
-footer a
+.info-container h4
 {
-  font-weight: 600;
+  padding: 10px;
 }
 

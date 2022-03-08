@@ -34,13 +34,7 @@ export default function SearchResults({ searchResults, handleAdd })
               )
             })}
           </ul> :
-          <>
-            <img
-              src="https://media.giphy.com/media/exm1VEqdeRUVRxPFFd/giphy.gif"
-              className="empty">
-            </img>
-            <p>Try entering a food/meal above...</p>
-          </>
+          <p className="results-tip">Try searching for a food/meal above...</p>
       }
     </div>
   )

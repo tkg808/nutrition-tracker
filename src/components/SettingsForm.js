@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SettingsForm({ userSettings, handleSettingsSubmit })
+export default function SettingsForm({ userSettings, handleChange, handleSettingsSubmit })
 {
 
   return (
@@ -8,7 +8,8 @@ export default function SettingsForm({ userSettings, handleSettingsSubmit })
       <label htmlFor="gender">Gender: </label>
       <select
         id="gender"
-        placeholder={userSettings.gender}>
+        value={userSettings.gender === "male" ? 0 : 1}
+        onChange={handleChange}>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
