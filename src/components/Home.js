@@ -50,6 +50,7 @@ export default function Home()
         <NutritionTotals totals={totals} />
       </div>
       <FoodList userFoods={userFoods} handleRemove={handleRemove} />
+      {!userFoods.length && <p className="list-tip">Search for foods/meals to add to this list...</p>}
     </div>
   )
 }
