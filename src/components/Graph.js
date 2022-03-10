@@ -1,41 +1,100 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+Chart.register(ArcElement, Tooltip, Legend);
 
-export const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+const DATA_COUNT = 5;
+const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+
+// const labels = Utils.months({count: 7});
+const data = {
+  labels: ['Overall Yay', 'Overall Nay', 'Group A Yay', 'Group A Nay', 'Group B Yay', 'Group B Nay', 'Group C Yay', 'Group C Nay'],
   datasets: [
     {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
+      backgroundColor: ['#AAA', '#777'],
+      data: [21, 79]
     },
-  ],
+    {
+      backgroundColor: ['hsl(0, 100%, 60%)', 'hsl(0, 100%, 35%)'],
+      data: [33, 67]
+    },
+    {
+      backgroundColor: ['hsl(100, 100%, 60%)', 'hsl(100, 100%, 35%)'],
+      data: [20, 80]
+    },
+    {
+      backgroundColor: ['hsl(180, 100%, 60%)', 'hsl(180, 100%, 35%)'],
+      data: [10, 90]
+    }
+  ]
 };
+
+const config = {
+  type: 'pie',
+  data: data,
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: {
+          generateLabels: function (chart)
+          {
+            // Get the default label list
+            const original = Chart.overrides.pie.plugins.legend.labels.generateLabels;
+            const labelsOriginal = original.call(this, chart);
+
+            // Build an array of colors used in the datasets of the chart
+            let datasetColors = chart.data.datasets.map(function (e)
+            {
+              return e.backgroundColor;
+            });
+            datasetColors = datasetColors.flat();
+
+            // Modify the color and hide state of each label
+            labelsOriginal.forEach(label =>
+            {
+              // There are twice as many labels as there are datasets. This converts the label index into the corresponding dataset index
+              label.datasetIndex = (label.index - label.index % 2) / 2;
+
+              // The hidden state must match the dataset's hidden state
+              label.hidden = !chart.isDatasetVisible(label.datasetIndex);
+
+              // Change the color to match the dataset
+              label.fillStyle = datasetColors[label.index];
+            });
+
+            return labelsOriginal;
+          }
+        },
+        onClick: function (mouseEvent, legendItem, legend)
+        {
+          // toggle the visibility of the dataset from what it currently is
+          legend.chart.getDatasetMeta(
+            legendItem.datasetIndex
+          ).hidden = legend.chart.isDatasetVisible(legendItem.datasetIndex);
+          legend.chart.update();
+        }
+      },
+      tooltip: {
+        callbacks: {
+          label: function (context)
+          {
+            const labelIndex = (context.datasetIndex * 2) + context.dataIndex;
+            return context.chart.data.labels[labelIndex] + ': ' + context.formattedValue;
+          }
+        }
+      }
+    }
+  },
+};
+
 
 export default function Graph()
 {
   return (
     <div className="graph-container">
-      <Pie className="graph" data={data} />
+      <Pie className="graph" data={data} config={config} />
     </div>
   )
 }

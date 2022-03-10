@@ -23,6 +23,7 @@ Disclaimer - This is not dietary advice, nor is it a substitute for professional
 * Fontawesome
 * Pixabay
 * tinyimg.io
+* ChartJS
 * https://medium.com/sedeo/how-to-fix-target-blank-a-security-and-performance-issue-in-web-pages-2118eba1ce2f#:~:text=There%20are%20two%20solutions%20to%20fix%20these%20problems.,do%20not%20have%20access%20to%20the%20linking%20page.
 * https://css-tricks.com/forums/topic/how-to-make-footer-floating-at-bottom-of-page/
 
