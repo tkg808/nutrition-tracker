@@ -98,7 +98,7 @@ export default function Search()
       {
         dispatch({
           type: "error",
-          error: "Oops, something went wrong! Plelase try again later."
+          error: "Oops, something went wrong! Please try again later."
         })
       })
   }

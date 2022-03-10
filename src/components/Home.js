@@ -3,6 +3,7 @@ import NutritionTotals from './NutritionTotals';
 import FoodList from './FoodList';
 import { UserContext } from '../UserContext';
 import { UserSettings } from '../UserSettings';
+import Graph from './Graph';
 
 export default function Home()
 {
@@ -43,13 +44,10 @@ export default function Home()
 
   return (
     <div className="home-container">
+      <h2>Nutrition Summary</h2>
       <div className="summary-container">
-        <h2>Nutrition Summary</h2>
-        <h4>BMR:
-          {userSettings.bmr() < 6 ? " ~" : ` ${userSettings.bmr()} cals`}</h4>
-        <h4>Daily Calorie Needs:
-          {userSettings.dailyCalories() < 6 ? " ~" : ` ${userSettings.dailyCalories()} cals`}</h4>
-        <NutritionTotals totals={totals} />
+        <NutritionTotals totals={totals} userSettings={userSettings} />
+        <Graph />
       </div>
       <FoodList userFoods={userFoods} handleRemove={handleRemove} />
       {!userFoods.length && <p className="list-tip">Search for foods/meals to add to this list...</p>}
