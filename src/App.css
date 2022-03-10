@@ -146,15 +146,24 @@ main
   border: 2px solid var(--primary);
 }
 
-.summary-container h2
+@media (max-width: 500px)
 {
-  padding: 10px 0;
+  .summary-container
+  {
+    flex-direction: column;
+  }
 }
 
 .totals-container
 {
+  min-width: 250px;
   padding: 10px 0;
   line-height: 1.5;
+}
+
+.graph-container
+{
+min-width: 250px;
 }
 
 .list-container

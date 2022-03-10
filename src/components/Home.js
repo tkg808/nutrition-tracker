@@ -47,7 +47,7 @@ export default function Home()
       <h2>Nutrition Summary</h2>
       <div className="summary-container">
         <NutritionTotals totals={totals} userSettings={userSettings} />
-        <Graph />
+        <Graph className="graph" />
       </div>
       <FoodList userFoods={userFoods} handleRemove={handleRemove} />
       {!userFoods.length && <p className="list-tip">Search for foods/meals to add to this list...</p>}
