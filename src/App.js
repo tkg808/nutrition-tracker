@@ -72,6 +72,7 @@ export default function App()
               <Route path="/" element={<Home />} />
               <Route path="/search" element={<Search />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/help" element={<Help />} />
             </Routes>
           </main>
         </UserContext.Provider>
