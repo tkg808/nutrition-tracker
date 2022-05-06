@@ -9,7 +9,8 @@
 {
   --primary: #7f5539;
   --secondary: #fdf0d4;
-  --accent: #ddb892;
+  /* --accent1: #ddb892; */
+  --accent: #14c01a;
   --lightText: white;
 }
 
@@ -19,39 +20,66 @@ body
   background-color: var(--secondary);
 }
 
-header
+header.header-container
 {
-  height: 50px;
+  height: 10vh;
   width: 100%;
-  min-width: 375px;
   color: var(--lightText);
   background-color: var(--primary);
   display: flex;
 }
 
-.app-name
+div.brand-container
 {
-  align-self: flex-end;
-  font-size: 36px;
+  width: 30%;
+  display: flex;
 }
 
-img.apple
+img.brand-image
 {
+  width: 100%;
+  object-fit: contain;
   padding: 5px;
 }
 
-nav
+h1.brand-name
 {
-  min-width: 375px;
-  padding: 5px 20px;
+  align-self: flex-end;
+  font-size: 2.25em;
+}
+
+nav.nav-container
+{
+  width: 70%;
   display: flex;
   justify-content: space-between;
-  background-color: var(--accent);
+  align-content: center;
+}
+
+div.function-links
+{
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+div.user-links
+{
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+div.links-container a
+{
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
 }
 
 a
 {
-  padding-right: 10px;
+  /* padding-right: 10px; */
   color: var(--lightText);
   text-decoration: none;
 }
@@ -102,7 +130,7 @@ footer
 {
   width: 100%;
   min-width: 375px;
-  height: 25px;
+  height: 5vh;
   position: fixed;
   bottom: 0;
   display: flex;
@@ -110,8 +138,8 @@ footer
   align-items: center;
   gap: 10px;
   color: white;
-  background-color: var(--accent);
-  
+  background-color: var(--primary);
+
 }
 
 footer a

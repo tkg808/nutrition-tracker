@@ -1,11 +1,11 @@
 import './App.css';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Search from './components/Search';
+import Help from './components/Help';
+import Navigation from './components/Navigation';
 import { useState } from 'react';
 import { UserContext } from './UserContext';
-import { FaRegQuestionCircle } from 'react-icons/fa';
-import Help from './components/Help';
 import Settings from './components/Settings';
 import { UserSettings } from './UserSettings';
 
@@ -62,22 +62,9 @@ export default function App()
 
   return (
     <div className="App" onClick={handleClose}>
-      <header>
-        <img className="apple" src="https://cdn.pixabay.com/photo/2013/07/12/19/17/apple-154492_1280.png" alt="apple-a-day" />
-        <h1 className="app-name">Nutrition Tracker</h1>
-      </header>
-      <nav>
-        <div className="links">
-          <Link to="/">Home</Link>
-          <Link to="/search">Search</Link>
-          <Link to="/settings">Settings</Link>
-        </div>
-        <FaRegQuestionCircle
-          className="icon"
-          id="help-icon"
-          onClick={handleHelp}
-          style={showHelp ? { color: "red" } : { color: "green" }} />
-      </nav>
+      <Navigation
+        showHelp={showHelp}
+        handleHelp={handleHelp} />
       <UserSettings.Provider value={{ userSettings, setUserSettings }}>
         <UserContext.Provider value={{ userFoods, setUserFoods }}>
           <main>
@@ -89,7 +76,7 @@ export default function App()
           </main>
         </UserContext.Provider>
       </UserSettings.Provider>
-      {!showHelp ? null : <Help handleHelp={handleHelp} />}
+
       <footer>
         <h4>© 2022</h4>
         <a href="https://github.com/tkg808" target="_blank" rel="noreferrer noopener">Github</a>
