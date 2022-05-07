@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Search from './components/Search';
 import Help from './components/Help';
 import Signup from './components/Signup';
-
+import Login from './components/Login';
 import { UserContext } from './UserContext';
 import Settings from './components/Settings';
 import { UserSettings } from './UserSettings';
@@ -76,6 +76,7 @@ export default function App()
               <Route path="/settings" element={<Settings />} />
               <Route path="/help" element={<Help />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </main>
         </UserContext.Provider>
