@@ -18,8 +18,8 @@ export default function Navigation({ showHelp, handleHelp })
           <Link to="/help">Help</Link>
         </div>
         <div className="user-links links-container">
-          <Link to="/sign-up">Sign Up</Link>
-          <Link to="/log-in">Log In</Link>
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">Log In</Link>
         </div>
       </nav>
       {/* <FaRegQuestionCircle

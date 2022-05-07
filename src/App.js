@@ -1,10 +1,12 @@
 import './App.css';
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
 import Home from './components/Home';
 import Search from './components/Search';
 import Help from './components/Help';
-import Navigation from './components/Navigation';
-import { useState } from 'react';
+import Signup from './components/Signup';
+
 import { UserContext } from './UserContext';
 import Settings from './components/Settings';
 import { UserSettings } from './UserSettings';
@@ -73,6 +75,7 @@ export default function App()
               <Route path="/search" element={<Search />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/help" element={<Help />} />
+              <Route path="/signup" element={<Signup />} />
             </Routes>
           </main>
         </UserContext.Provider>
