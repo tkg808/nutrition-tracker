@@ -31,10 +31,7 @@ export default function Login({ handleSetLoggedIn })
         if (response.status === 200)
         {
           handleSetLoggedIn(response.data.token);
-          setTimeout(() =>
-          {
-            navigate("/");
-          }, 2000);
+          navigate("/");
         }
       });
   }
