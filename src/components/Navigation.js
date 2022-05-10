@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 
-export default function Navigation({ showHelp, handleHelp })
+export default function Navigation({ showHelp, handleHelp, loggedIn, handleLogout })
 {
   return (
     <header className="header-container">
@@ -18,8 +18,19 @@ export default function Navigation({ showHelp, handleHelp })
           <Link to="/help">Help</Link>
         </div>
         <div className="user-links links-container">
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/login">Log In</Link>
+          {
+            loggedIn ?
+              (
+                <Link to="/" onClick={handleLogout}>Log Out</Link>
+              ) :
+              (
+                <>
+                  <Link to="/signup">Sign Up</Link>
+                  <Link to="/login">Log In</Link>
+                </>
+              )
+          }
+
         </div>
       </nav>
       {/* <FaRegQuestionCircle

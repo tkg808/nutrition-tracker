@@ -1,6 +1,6 @@
 import './App.css';
-import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Home from './components/Home';
 import Search from './components/Search';
@@ -10,6 +10,8 @@ import Login from './components/Login';
 import { UserContext } from './UserContext';
 import Settings from './components/Settings';
 import { UserSettings } from './UserSettings';
+import axios from 'axios';
+import { NT_API_URL } from './apiConfig';
 
 export default function App()
 {
@@ -40,9 +42,13 @@ export default function App()
     }
   };
 
+  const navigate = useNavigate();
+
   // instantiates contexts.
   const [userFoods, setUserFoods] = useState([]);
   const [userSettings, setUserSettings] = useState(initialSettings);
+
+  const [loggedIn, setLoggedIn] = useState(false);
 
   // toggles help window.
   const [showHelp, setShowHelp] = useState(false);
@@ -51,6 +57,32 @@ export default function App()
   function handleHelp()
   {
     setShowHelp(!showHelp);
+  }
+
+  // Store token in local storage for persistance.
+  function handleSetLoggedIn(token)
+  {
+    setLoggedIn(true);
+    localStorage.setItem("token", token);
+    getUserInfo();
+  }
+
+  /* IN WORKING PROGRESS */
+  function getUserInfo()
+  {
+    axios.get(NT_API_URL + "users/me", localStorage.getItem("token"))
+      .then((response) => console.log(response))
+      .catch(console.error);
+  }
+  /* IN WORKING PROGRESS */
+
+  function handleLogout()
+  {
+    setLoggedIn(false);
+
+    localStorage.removeItem("token");
+    alert("You have been logged out!");
+    navigate("/");
   }
 
   // click anywhere in app to close help window.
@@ -62,11 +94,22 @@ export default function App()
     }
   }
 
+  useEffect(() =>
+  {
+    if (localStorage.getItem("token"))
+    {
+      setLoggedIn(true);
+      getUserInfo();
+    }
+  }, []);
+
   return (
     <div className="App" onClick={handleClose}>
       <Navigation
         showHelp={showHelp}
-        handleHelp={handleHelp} />
+        handleHelp={handleHelp}
+        loggedIn={loggedIn}
+        handleLogout={handleLogout} />
       <UserSettings.Provider value={{ userSettings, setUserSettings }}>
         <UserContext.Provider value={{ userFoods, setUserFoods }}>
           <main>
@@ -76,7 +119,8 @@ export default function App()
               <Route path="/settings" element={<Settings />} />
               <Route path="/help" element={<Help />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<Login
+                handleSetLoggedIn={handleSetLoggedIn} />} />
             </Routes>
           </main>
         </UserContext.Provider>
