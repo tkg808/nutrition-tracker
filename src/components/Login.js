@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { NT_API_URL } from "../apiConfig";
 import axios from "axios";
 
-export default function Login()
+export default function Login({ handleSetLoggedIn })
 {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(
@@ -21,7 +21,7 @@ export default function Login()
     });
   }
 
-  function handleSubmit(event)
+  function handleLogin(event)
   {
     event.preventDefault();
 
@@ -30,12 +30,11 @@ export default function Login()
       {
         if (response.status === 200)
         {
-          console.log(response);
-          console.log(response.data.token);
-          // setTimeout(() =>
-          // {
-          //   navigate("/");
-          // }, 3000);
+          handleSetLoggedIn(response.data.token);
+          setTimeout(() =>
+          {
+            navigate("/");
+          }, 2000);
         }
       });
   }
@@ -43,7 +42,7 @@ export default function Login()
   return (
     <form
       className="user-form login-form"
-      onSubmit={handleSubmit}>
+      onSubmit={handleLogin}>
       <label htmlFor="login-username">
         Username
       </label>
