@@ -49,6 +49,7 @@ export default function App()
   const [userSettings, setUserSettings] = useState(initialSettings);
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
   // toggles help window.
   const [showHelp, setShowHelp] = useState(false);
@@ -70,8 +71,19 @@ export default function App()
   /* IN WORKING PROGRESS */
   function getUserInfo()
   {
-    axios.get(NT_API_URL + "users/me", localStorage.getItem("token"))
-      .then((response) => console.log(response))
+    axios.get(NT_API_URL + "users/me",
+      {
+        headers:
+        {
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }
+      }
+    )
+      .then((response) => response.data)
+      .then((data) =>
+      {
+        setUserInfo(data);
+      })
       .catch(console.error);
   }
   /* IN WORKING PROGRESS */
@@ -93,6 +105,8 @@ export default function App()
       setShowHelp(false);
     }
   }
+
+  console.log(userInfo);
 
   useEffect(() =>
   {
