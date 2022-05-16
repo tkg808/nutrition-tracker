@@ -30,12 +30,12 @@ export default function SettingsForm({ userSettings, handleSettingsSubmit })
       <label htmlFor="activityLevel">Activity Level: </label>
       <select id="activityLevel">
         <option value="1">Basal Metabolic Rate (BMR)</option>
-        <option value="1.1">Sedantary</option>
-        <option value="1.2">Light</option>
-        <option value="1.4">Moderate</option>
-        <option value="1.6">Active</option>
+        <option value="1.2">Sedantary</option>
+        <option value="1.35">Light</option>
+        <option value="1.5">Moderate</option>
+        <option value="1.65">Active</option>
         <option value="1.8">Very Active</option>
-        <option value="2">Extremely Active</option>
+        <option value="1.95">Extremely Active</option>
       </select>
       <button type="submit">Submit</button>
     </form>
