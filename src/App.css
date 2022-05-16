@@ -250,7 +250,7 @@ div.search-container
   align-items: center;
 }
 
-form.search-form
+form.search-form, form.settings-form
 {
   width: 60%;
   gap: 10px;
@@ -263,6 +263,15 @@ textarea#search-input
 {
   width: 100%;
   height: 25vh;
+}
+
+div.settings-container
+{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-form, .settings-form
