@@ -2,6 +2,8 @@ import React, { useState, useContext, useReducer } from 'react';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
 import { UserContext } from '../UserContext';
+import { NT_API_URL } from "../apiConfig";
+import axios from "axios";
 
 export default function Search()
 {
@@ -48,7 +50,7 @@ export default function Search()
     }
   }
 
-  // textarea.
+  // search form -- textarea.
   function handleChange(event)
   {
     setSearchInput(event.target.value);
@@ -103,21 +105,29 @@ export default function Search()
       })
   }
 
-  function handleAdd(event)
+  function handleAdd(index)
   {
-    // index of the food item associated with the icon clicked.
-    // Solution for pointer event inconsistently targetting svg or path.
-    const index = (event.target.tagName === "svg" ?
-      event.target.parentElement.parentElement.parentElement.attributes.listindex.value :
-      event.target.parentElement.parentElement.parentElement.parentElement.attributes.listindex.value);
-
     // updates UserContext without directly accessing it.
     const newArray = [...searchResults];
     setUserFoods([...userFoods, newArray[index]]);
 
-    // updates searchResults state without directly accessing it.
-    newArray.splice(index, 1);
-    dispatch({ type: "update", newArray })
+    // food item to add to db.
+    const newFood = newArray.splice(index, 1)[0];
+
+    axios.post(NT_API_URL + "foods/", newFood,
+      {
+        headers:
+        {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      })
+      .then((response) =>
+      {
+        if (response.status === 200)
+        {
+          dispatch({ type: "update", newArray });
+        }
+      });
   }
 
   return (
