@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import SettingsForm from './SettingsForm';
 import { UserSettings } from '../UserSettings';
+import Composition from '../Composition';
 
 export default function Settings()
 {
@@ -10,22 +11,21 @@ export default function Settings()
   {
     event.preventDefault();
 
-    // updates userSettings context without directly accessing it.
-    const newSettings = { ...userSettings };
-    newSettings.gender = event.target[0].value;
-    newSettings.age = event.target[1].value;
-    newSettings.height = event.target[2].value;
-    newSettings.weight = event.target[3].value;
-    newSettings.activityLevel = parseFloat(event.target[4].value);
-    setUserSettings({ ...newSettings });
+    setUserSettings(new Composition(
+      event.target[0].value,
+      event.target[1].value,
+      event.target[2].value,
+      event.target[3].value,
+      parseFloat(event.target[4].value)
+    ));
   }
 
   return (
     <div className="settings-container">
       <SettingsForm userSettings={userSettings} handleSettingsSubmit={handleSettingsSubmit} />
       <div className="info-container">
-        <h4 className="bmr">Basal Metabolic Rate (BMR): {userSettings.bmr() < 6 ? "~" : `${userSettings.bmr()} cals`}</h4>
-        <h4 className="daily-calories">Daily Caloric Needs: {userSettings.bmr() < 6 ? "~" : `${userSettings.dailyCalories()} cals`}</h4>
+        <h4 className="bmr">Basal Metabolic Rate (BMR): {userSettings.bmr} cals</h4>
+        <h4 className="daily-calories">Daily Caloric Needs: {userSettings.dailyCalories} cals</h4>
       </div>
     </div>
   );

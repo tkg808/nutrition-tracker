@@ -12,41 +12,15 @@ import Settings from './components/Settings';
 import { UserSettings } from './UserSettings';
 import axios from 'axios';
 import { NT_API_URL } from './apiConfig';
+import Composition from './Composition';
 
 export default function App()
 {
-  // instantiates UserSettings context.
-  const initialSettings =
-  {
-    gender: "male",
-    age: 0,
-    height: 0,
-    weight: 0,
-    activityLevel: 1,
-    bmr: function ()
-    {
-      const base = (10 * this.weight) + (6.25 * this.height) - (5 * this.age);
-
-      if (this.gender === "male")
-      {
-        return Math.round(base + 5);
-      }
-      else
-      {
-        return Math.round(base - 161);
-      }
-    },
-    dailyCalories: function ()
-    {
-      return Math.round((this.bmr() * this.activityLevel));
-    }
-  };
-
   const navigate = useNavigate();
 
   // instantiates contexts.
   const [userFoods, setUserFoods] = useState([]);
-  const [userSettings, setUserSettings] = useState(initialSettings);
+  const [userSettings, setUserSettings] = useState(new Composition());
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
