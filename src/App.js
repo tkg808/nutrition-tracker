@@ -68,7 +68,19 @@ export default function App()
     navigate("/");
   }
 
-  // function getFoodsList
+  function getUserFoods()
+  {
+    axios.get(NT_API_URL + "foods",
+      {
+        headers:
+        {
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }
+      })
+      .then((response) => response.data)
+      .then((data) => setUserFoods(data))
+      .catch(console.error);
+  }
 
   // click anywhere in app to close help window.
   function handleClose()
@@ -85,6 +97,7 @@ export default function App()
     {
       setLoggedIn(true);
       getUserInfo();
+      getUserFoods();
     }
   }, []);
 
