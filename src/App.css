@@ -197,7 +197,7 @@ min-width: 250px;
 .list-container
 {
   min-width: 350px;
-  padding: 10px 0 30px 0;
+  padding: 10px 0 50px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -250,13 +250,18 @@ div.search-container
   align-items: center;
 }
 
-form.search-form, form.settings-form
+form
 {
-  width: 60%;
-  gap: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+form.search-form, form.settings-form
+{
+  width: 60%;
+  padding: 10px;
+  gap: 10px;
 }
 
 textarea#search-input
@@ -272,11 +277,6 @@ div.settings-container
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.search-form, .settings-form
-{
-  padding: 10px;
 }
 
 .settings-form input, select
