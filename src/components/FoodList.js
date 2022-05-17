@@ -1,16 +1,16 @@
 import React from 'react';
-import { FaTrashAlt } from 'react-icons/fa'
+import { FaTrashAlt } from 'react-icons/fa';
 
-export default function FoodList({ userFoods, handleRemove })
+export default function FoodList({ userFoods, deleteFood })
 {
   return (
     <div className="list-container">
       <h2>List of Foods</h2>
       <ul className="list">
-        {userFoods.map((food, index) =>
+        {userFoods.map((food) =>
         {
           return (
-            <li className="food-item" key={index} listindex={index}>
+            <li className="food-item" key={food._id}>
               <div className="item-header">
                 <h4 className="item-name">
                   {food.name.toUpperCase()} - {food.calories} calories
@@ -19,7 +19,7 @@ export default function FoodList({ userFoods, handleRemove })
                   <FaTrashAlt
                     className="icon"
                     id="remove-food"
-                    onClick={handleRemove}
+                    onClick={() => deleteFood(food._id)}
                     style={{ color: "red" }} />
                 </div>
               </div>

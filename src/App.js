@@ -82,6 +82,8 @@ export default function App()
       .catch(console.error);
   }
 
+
+
   // click anywhere in app to close help window.
   function handleClose()
   {
@@ -112,7 +114,7 @@ export default function App()
         <FoodsContext.Provider value={{ userFoods, setUserFoods }}>
           <main>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home />} getUserFoods={getUserFoods} />
               <Route path="/search" element={<Search />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/help" element={<Help />} />

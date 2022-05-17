@@ -3,8 +3,11 @@ import NutritionTotals from './NutritionTotals';
 import FoodList from './FoodList';
 import { FoodsContext, MetricsContext } from '../UserContext';
 import Graph from './Graph';
+import { NT_API_URL } from '../apiConfig';
+import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
-export default function Home()
+export default function Home({ getUserFoods })
 {
   const { userFoods, setUserFoods } = useContext(FoodsContext);
   const { userMetrics } = useContext(MetricsContext);
@@ -27,18 +30,25 @@ export default function Home()
     totals.proteins += food.protein_g;
   })
 
-  function handleRemove(event)
+  function deleteFood(foodId)
   {
-    // index of the food item associated with the icon clicked.
-    // Solution for pointer event inconsistently targetting svg or path.
-    const index = (event.target.tagName === "svg" ?
-      event.target.parentElement.parentElement.parentElement.attributes.listindex.value :
-      event.target.parentElement.parentElement.parentElement.parentElement.attributes.listindex.value);
-
-    // removes clicked food item and updates UserContext without directly accessing it.
-    const newArray = [...userFoods];
-    newArray.splice(index, 1);
-    setUserFoods([...newArray]);
+    axios.delete(NT_API_URL + `foods/${foodId}`,
+      {
+        headers:
+        {
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }
+      })
+      .then((response) => 
+      {
+        if (response.status === 204)
+        {
+          setUserFoods((prevState) =>
+          {
+            return prevState.filter((food) => food._id !== foodId);
+          });
+        }
+      });
   }
 
   return (
@@ -48,7 +58,7 @@ export default function Home()
         <NutritionTotals totals={totals} userMetrics={userMetrics} />
         <Graph className="graph" />
       </div>
-      <FoodList userFoods={userFoods} handleRemove={handleRemove} />
+      <FoodList userFoods={userFoods} deleteFood={deleteFood} />
       {!userFoods.length && <p className="list-tip">Search for foods/meals to add to this list...</p>}
     </div>
   )
