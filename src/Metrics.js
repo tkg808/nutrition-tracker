@@ -1,4 +1,4 @@
-export default class Composition
+export default class Metrics
 {
   constructor(
     gender,

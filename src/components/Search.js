@@ -1,7 +1,7 @@
 import React, { useState, useContext, useReducer } from 'react';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
-import { UserContext } from '../UserContext';
+import { FoodsContext } from '../UserContext';
 import { NT_API_URL } from "../apiConfig";
 import axios from "axios";
 
@@ -11,7 +11,7 @@ export default function Search()
   const [searchInput, setSearchInput] = useState("");
 
   // context to track user food list.
-  const { userFoods, setUserFoods } = useContext(UserContext);
+  const { userFoods, setUserFoods } = useContext(FoodsContext);
 
   // instantiates reducer.
   const initialState =

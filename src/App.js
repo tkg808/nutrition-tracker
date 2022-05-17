@@ -7,12 +7,11 @@ import Search from './components/Search';
 import Help from './components/Help';
 import Signup from './components/Signup';
 import Login from './components/Login';
-import { UserContext } from './UserContext';
+import { FoodsContext, MetricsContext } from './UserContext';
 import Settings from './components/Settings';
-import { UserSettings } from './UserSettings';
 import axios from 'axios';
 import { NT_API_URL } from './apiConfig';
-import Composition from './Composition';
+import Metrics from './Metrics';
 
 export default function App()
 {
@@ -20,7 +19,7 @@ export default function App()
 
   // instantiates contexts.
   const [userFoods, setUserFoods] = useState([]);
-  const [userSettings, setUserSettings] = useState(new Composition());
+  const [userMetrics, setUserMetrics] = useState(new Metrics());
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
@@ -42,7 +41,6 @@ export default function App()
     getUserInfo();
   }
 
-  /* IN WORKING PROGRESS */
   function getUserInfo()
   {
     axios.get(NT_API_URL + "users/me",
@@ -60,7 +58,6 @@ export default function App()
       })
       .catch(console.error);
   }
-  /* IN WORKING PROGRESS */
 
   function handleLogout()
   {
@@ -71,6 +68,8 @@ export default function App()
     navigate("/");
   }
 
+  // function getFoodsList
+
   // click anywhere in app to close help window.
   function handleClose()
   {
@@ -79,8 +78,6 @@ export default function App()
       setShowHelp(false);
     }
   }
-
-  console.log(userInfo);
 
   useEffect(() =>
   {
@@ -98,8 +95,8 @@ export default function App()
         handleHelp={handleHelp}
         loggedIn={loggedIn}
         handleLogout={handleLogout} />
-      <UserSettings.Provider value={{ userSettings, setUserSettings }}>
-        <UserContext.Provider value={{ userFoods, setUserFoods }}>
+      <MetricsContext.Provider value={{ userMetrics, setUserMetrics }}>
+        <FoodsContext.Provider value={{ userFoods, setUserFoods }}>
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -111,8 +108,8 @@ export default function App()
                 handleSetLoggedIn={handleSetLoggedIn} />} />
             </Routes>
           </main>
-        </UserContext.Provider>
-      </UserSettings.Provider>
+        </FoodsContext.Provider>
+      </MetricsContext.Provider>
 
       <footer>
         <h4>© 2022</h4>

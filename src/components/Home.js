@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
 import NutritionTotals from './NutritionTotals';
 import FoodList from './FoodList';
-import { UserContext } from '../UserContext';
-import { UserSettings } from '../UserSettings';
+import { FoodsContext, MetricsContext } from '../UserContext';
 import Graph from './Graph';
 
 export default function Home()
 {
-  const { userFoods, setUserFoods } = useContext(UserContext);
-  const { userSettings } = useContext(UserSettings);
+  const { userFoods, setUserFoods } = useContext(FoodsContext);
+  const { userMetrics } = useContext(MetricsContext);
 
   // tracks data to render.
   const totals =
@@ -46,7 +45,7 @@ export default function Home()
     <div className="home-container">
       <h2>Nutrition Summary</h2>
       <div className="summary-container">
-        <NutritionTotals totals={totals} userSettings={userSettings} />
+        <NutritionTotals totals={totals} userMetrics={userMetrics} />
         <Graph className="graph" />
       </div>
       <FoodList userFoods={userFoods} handleRemove={handleRemove} />

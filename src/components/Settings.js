@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import SettingsForm from './SettingsForm';
-import { UserSettings } from '../UserSettings';
-import Composition from '../Composition';
+import { MetricsContext } from '../UserContext';
+import Metrics from '../Metrics';
 
 export default function Settings()
 {
-  const { userSettings, setUserSettings } = useContext(UserSettings);
+  const { userMetrics, setUserMetrics } = useContext(MetricsContext);
 
-  function handleSettingsSubmit(event)
+  function handleSubmit(event)
   {
     event.preventDefault();
 
-    setUserSettings(new Composition(
+    setUserMetrics(new Metrics(
       event.target[0].value,
       event.target[1].value,
       event.target[2].value,
@@ -22,10 +22,10 @@ export default function Settings()
 
   return (
     <div className="settings-container">
-      <SettingsForm userSettings={userSettings} handleSettingsSubmit={handleSettingsSubmit} />
+      <SettingsForm userMetrics={userMetrics} handleSubmit={handleSubmit} />
       <div className="info-container">
-        <h4 className="bmr">Basal Metabolic Rate (BMR): {userSettings.bmr} cals</h4>
-        <h4 className="daily-calories">Daily Caloric Needs: {userSettings.dailyCalories} cals</h4>
+        <h4 className="bmr">Basal Metabolic Rate (BMR): {userMetrics.bmr} cals</h4>
+        <h4 className="daily-calories">Daily Caloric Needs: {userMetrics.dailyCalories} cals</h4>
       </div>
     </div>
   );

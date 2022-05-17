@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function SettingsForm({ userSettings, handleSettingsSubmit })
+export default function SettingsForm({ userMetrics, handleSubmit })
 {
   return (
-    <form className="settings-form" onSubmit={handleSettingsSubmit}>
+    <form className="settings-form" onSubmit={handleSubmit}>
       <label htmlFor="gender">Gender: </label>
       <select id="gender">
         <option value="male">Male</option>
@@ -13,19 +13,19 @@ export default function SettingsForm({ userSettings, handleSettingsSubmit })
       <input
         type="number"
         id="age"
-        placeholder={userSettings.age}
+        placeholder={userMetrics.age}
         required />
       <label htmlFor="height">Height (in.): </label>
       <input
         type="number"
         id="height"
-        placeholder={userSettings.height}
+        placeholder={userMetrics.height}
         required />
       <label htmlFor="weight">Weight (lbs.): </label>
       <input
         type="number"
         id="weight"
-        placeholder={userSettings.weight}
+        placeholder={userMetrics.weight}
         required />
       <label htmlFor="activityLevel">Activity Level: </label>
       <select id="activityLevel">
