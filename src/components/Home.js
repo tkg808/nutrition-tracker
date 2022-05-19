@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import NutritionTotals from './NutritionTotals';
 import FoodList from './FoodList';
 import { FoodsContext, MetricsContext } from '../UserContext';
 import Graph from './Graph';
 import { NT_API_URL } from '../apiConfig';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
 
 export default function Home({ getUserFoods })
 {
@@ -50,6 +49,11 @@ export default function Home({ getUserFoods })
         }
       });
   }
+
+  useEffect(() =>
+  {
+    getUserFoods();
+  }, [])
 
   return (
     <div className="home-container">

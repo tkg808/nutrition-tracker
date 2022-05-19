@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import { flushSync } from 'react-dom';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Home from './components/Home';
@@ -17,12 +18,12 @@ export default function App()
 {
   const navigate = useNavigate();
 
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+
   // instantiates contexts.
   const [userFoods, setUserFoods] = useState([]);
   const [userMetrics, setUserMetrics] = useState(new Metrics());
-
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
 
   // toggles help window.
   const [showHelp, setShowHelp] = useState(false);
@@ -33,12 +34,32 @@ export default function App()
     setShowHelp(!showHelp);
   }
 
+  // click anywhere in app to close help window.
+  function handleClose()
+  {
+    if (showHelp)
+    {
+      setShowHelp(false);
+    }
+  }
+
   // Store token in local storage for persistance.
   function handleSetLoggedIn(token)
   {
     setLoggedIn(true);
     localStorage.setItem("token", token);
     getUserInfo();
+  }
+
+  function handleLogout()
+  {
+    setLoggedIn(false);
+    setUserInfo(null);
+    setUserFoods([]);
+
+    localStorage.removeItem("token");
+    alert("You have been logged out!");
+    navigate("/");
   }
 
   function getUserInfo()
@@ -51,21 +72,15 @@ export default function App()
         }
       }
     )
-      .then((response) => response.data)
-      .then((data) =>
+      .then((response) => 
       {
-        setUserInfo(data);
+        if (response.status === 200)
+        {
+          return response.data;
+        }
       })
+      .then((data) => setUserInfo(data))
       .catch(console.error);
-  }
-
-  function handleLogout()
-  {
-    setLoggedIn(false);
-
-    localStorage.removeItem("token");
-    alert("You have been logged out!");
-    navigate("/");
   }
 
   function getUserFoods()
@@ -77,20 +92,15 @@ export default function App()
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         }
       })
-      .then((response) => response.data)
+      .then((response) => 
+      {
+        if (response.status === 200)
+        {
+          return response.data;
+        }
+      })
       .then((data) => setUserFoods(data))
       .catch(console.error);
-  }
-
-
-
-  // click anywhere in app to close help window.
-  function handleClose()
-  {
-    if (showHelp)
-    {
-      setShowHelp(false);
-    }
   }
 
   useEffect(() =>
@@ -99,7 +109,6 @@ export default function App()
     {
       setLoggedIn(true);
       getUserInfo();
-      getUserFoods();
     }
   }, []);
 
@@ -114,7 +123,7 @@ export default function App()
         <FoodsContext.Provider value={{ userFoods, setUserFoods }}>
           <main>
             <Routes>
-              <Route path="/" element={<Home />} getUserFoods={getUserFoods} />
+              <Route path="/" element={<Home getUserFoods={getUserFoods} />} />
               <Route path="/search" element={<Search />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/help" element={<Help />} />
