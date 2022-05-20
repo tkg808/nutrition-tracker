@@ -3,7 +3,7 @@ import SettingsForm from './SettingsForm';
 import { MetricsContext } from '../UserContext';
 import Metrics from '../Metrics';
 
-export default function Settings()
+export default function Settings({ loggedIn, userInfo })
 {
   const { userMetrics, setUserMetrics } = useContext(MetricsContext);
 
@@ -18,6 +18,17 @@ export default function Settings()
       event.target[3].value,
       parseFloat(event.target[4].value)
     ));
+  }
+
+  if (!loggedIn && !userInfo)
+  {
+    return (
+      <div className="settings-container">
+        <h2>You are unique!</h2>
+        <h2>Find your caloric needs based on your body and activeness!</h2>
+        <img src="https://cdn.pixabay.com/photo/2019/10/18/14/58/remove-4559326_960_720.jpg" alt="measure person" />
+      </div>
+    )
   }
 
   return (

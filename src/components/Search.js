@@ -5,7 +5,7 @@ import { FoodsContext } from '../UserContext';
 import { NT_API_URL } from "../apiConfig";
 import axios from "axios";
 
-export default function Search()
+export default function Search({ loggedIn, userInfo })
 {
   // state for user input.
   const [searchInput, setSearchInput] = useState("");
@@ -128,6 +128,17 @@ export default function Search()
           dispatch({ type: "update", newArray });
         }
       });
+  }
+
+  if (!loggedIn && !userInfo)
+  {
+    return (
+      <div className="settings-container">
+        <h2>Measure what matters!</h2>
+        <h2>Find foods and their nutrients to be in control of your diet!</h2>
+        <img src="https://cdn.pixabay.com/photo/2016/03/05/21/43/appetite-1239056_960_720.jpg" alt="measure what matters" />
+      </div>
+    )
   }
 
   return (

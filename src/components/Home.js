@@ -6,7 +6,7 @@ import Graph from './Graph';
 import { NT_API_URL } from '../apiConfig';
 import axios from 'axios';
 
-export default function Home({ getUserFoods })
+export default function Home({ loggedIn, userInfo, getUserFoods })
 {
   const { userFoods, setUserFoods } = useContext(FoodsContext);
   const { userMetrics } = useContext(MetricsContext);
@@ -54,6 +54,17 @@ export default function Home({ getUserFoods })
   {
     getUserFoods();
   }, [])
+
+  if (!loggedIn && !userInfo)
+  {
+    return (
+      <div className="home-container">
+        <h2>The first step is diet!</h2>
+        <h2>Keep track of foods and their nutrients throughout the day!</h2>
+        <img src="https://cdn.pixabay.com/photo/2019/10/18/14/58/remove-4559331_960_720.jpg" alt="first step" />
+      </div>
+    )
+  }
 
   return (
     <div className="home-container">

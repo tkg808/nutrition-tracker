@@ -123,9 +123,19 @@ export default function App()
         <FoodsContext.Provider value={{ userFoods, setUserFoods }}>
           <main>
             <Routes>
-              <Route path="/" element={<Home getUserFoods={getUserFoods} />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/settings" element={<Settings />} />
+              <Route path="/" element={<Home
+                loggedIn={loggedIn}
+                userInfo={userInfo}
+                getUserFoods={getUserFoods}
+              />} />
+              <Route path="/search" element={<Search
+                loggedIn={loggedIn}
+                userInfo={userInfo}
+              />} />
+              <Route path="/settings" element={<Settings
+                loggedIn={loggedIn}
+                userInfo={userInfo}
+              />} />
               <Route path="/help" element={<Help />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login
