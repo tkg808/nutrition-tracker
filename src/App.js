@@ -1,11 +1,9 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { flushSync } from 'react-dom';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Home from './components/Home';
 import Search from './components/Search';
-import Help from './components/Help';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import { FoodsContext, MetricsContext } from './UserContext';
@@ -24,24 +22,6 @@ export default function App()
   // instantiates contexts.
   const [userFoods, setUserFoods] = useState([]);
   const [userMetrics, setUserMetrics] = useState(new Metrics());
-
-  // toggles help window.
-  const [showHelp, setShowHelp] = useState(false);
-
-  // help-icon click event.
-  function handleHelp()
-  {
-    setShowHelp(!showHelp);
-  }
-
-  // click anywhere in app to close help window.
-  function handleClose()
-  {
-    if (showHelp)
-    {
-      setShowHelp(false);
-    }
-  }
 
   // Store token in local storage for persistance.
   function handleSetLoggedIn(token)
@@ -113,10 +93,8 @@ export default function App()
   }, []);
 
   return (
-    <div className="App" onClick={handleClose}>
+    <div className="App">
       <Navigation
-        showHelp={showHelp}
-        handleHelp={handleHelp}
         loggedIn={loggedIn}
         handleLogout={handleLogout} />
       <MetricsContext.Provider value={{ userMetrics, setUserMetrics }}>
@@ -136,7 +114,6 @@ export default function App()
                 loggedIn={loggedIn}
                 userInfo={userInfo}
               />} />
-              <Route path="/help" element={<Help />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login
                 handleSetLoggedIn={handleSetLoggedIn} />} />

@@ -79,51 +79,13 @@ div.links-container a
 
 a
 {
-  /* padding-right: 10px; */
   color: var(--lightText);
   text-decoration: none;
 }
 
-a:hover, button, #remove-food, #add-food, #help-icon
+a:hover, button, #remove-food, #add-food
 {
   cursor: pointer;
-}
-
-.help-container
-{
-  margin: 5px;
-  max-width: 400px;
-  min-width: 350px;
-  position: absolute;
-  top: 80px;
-  right: 0;
-  line-height: 1.3;
-  font-size: 14px;
-  background-color: rgb(220, 220, 220);
-  border-radius: 5%;
-  border-top: 3px solid black;
-  border-bottom: 3px solid black;
-}
-
-.help-steps span
-{
-  font-weight: 600;
-}
-
-.help-tips span
-{
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.help-steps, .help-tips
-{
-  padding: 5px 0 5px 10px;
-}
-
-.help-steps h3, .help-tips h3
-{
-  text-align: center;
 }
 
 footer
