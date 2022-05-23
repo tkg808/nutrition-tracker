@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
-import SettingsForm from './SettingsForm';
-import { MetricsContext } from '../UserContext';
 import Metrics from '../Metrics';
+import { MetricsContext, MacrosContext } from '../UserContext';
+import MetricsForm from './MetricsForm';
+import Macros from '../Macros';
+import MacrosForm from './MacrosForm';
 
 export default function Settings({ loggedIn, userInfo })
 {
   const { userMetrics, setUserMetrics } = useContext(MetricsContext);
+  const { userMacros, setUserMacros } = useContext(MacrosContext);
 
-  function handleSubmit(event)
+  function handleSubmitMetrics(event)
   {
     event.preventDefault();
 
@@ -17,6 +20,17 @@ export default function Settings({ loggedIn, userInfo })
       event.target[2].value,
       event.target[3].value,
       parseFloat(event.target[4].value)
+    ));
+  }
+
+  function handleSubmitMacros(event)
+  {
+    event.preventDefault();
+
+    setUserMacros(new Macros(
+      event.target[0].value,
+      event.target[1].value,
+      event.target[2].value,
     ));
   }
 
@@ -33,10 +47,18 @@ export default function Settings({ loggedIn, userInfo })
 
   return (
     <div className="settings-container">
-      <SettingsForm userMetrics={userMetrics} handleSubmit={handleSubmit} />
-      <div className="info-container">
-        <h4 className="bmr">Basal Metabolic Rate (BMR): {userMetrics.bmr} cals</h4>
-        <h4 className="daily-calories">Daily Caloric Needs: {userMetrics.dailyCalories} cals</h4>
+      <div className="metrics-container">
+        <h2>Metrics</h2>
+        <MetricsForm userMetrics={userMetrics} handleSubmit={handleSubmitMetrics} />
+        <div className="info-container">
+          <h4 className="bmr">Basal Metabolic Rate (BMR): {userMetrics ? userMetrics.getBMR() : "~"} cals</h4>
+          <h4 className="daily-calories">Daily Caloric Needs: {userMetrics ? userMetrics.getDailyCalories() : "~"} cals</h4>
+        </div>
+      </div>
+
+      <div className="macros-container">
+        <h2>Macros</h2>
+        <MacrosForm userMacros={userMacros} handleSubmit={handleSubmitMacros} />
       </div>
     </div>
   );

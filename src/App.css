@@ -241,7 +241,16 @@ div.settings-container
   align-items: center;
 }
 
-.settings-form input, select
+div.metrics-container, div.macros-container
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.metrics-form input, .macros-form input, select
 {
   text-align: center;
 }

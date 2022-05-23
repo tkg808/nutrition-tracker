@@ -6,11 +6,12 @@ import Home from './components/Home';
 import Search from './components/Search';
 import Signup from './components/Signup';
 import Login from './components/Login';
-import { FoodsContext, MetricsContext } from './UserContext';
+import { FoodsContext, MetricsContext, MacrosContext } from './UserContext';
 import Settings from './components/Settings';
 import axios from 'axios';
 import { NT_API_URL } from './apiConfig';
 import Metrics from './Metrics';
+import Macros from './Macros';
 
 export default function App()
 {
@@ -21,7 +22,8 @@ export default function App()
 
   // instantiates contexts.
   const [userFoods, setUserFoods] = useState([]);
-  const [userMetrics, setUserMetrics] = useState(new Metrics());
+  const [userMetrics, setUserMetrics] = useState(null);
+  const [userMacros, setUserMacros] = useState(null);
 
   // Store token in local storage for persistance.
   function handleSetLoggedIn(token)
@@ -59,7 +61,14 @@ export default function App()
           return response.data;
         }
       })
-      .then((data) => setUserInfo(data))
+      .then((data) => 
+      {
+        console.log(data);
+        console.log(data.metrics);
+        setUserInfo(data.username);
+        setUserMetrics(new Metrics(data.metrics));
+        setUserMacros(new Macros(data.macros));
+      })
       .catch(console.error);
   }
 
@@ -92,36 +101,40 @@ export default function App()
     }
   }, []);
 
+  console.log(userMetrics);
+  console.log(userMacros);
+
   return (
     <div className="App">
       <Navigation
         loggedIn={loggedIn}
         handleLogout={handleLogout} />
-      <MetricsContext.Provider value={{ userMetrics, setUserMetrics }}>
-        <FoodsContext.Provider value={{ userFoods, setUserFoods }}>
-          <main>
-            <Routes>
-              <Route path="/" element={<Home
-                loggedIn={loggedIn}
-                userInfo={userInfo}
-                getUserFoods={getUserFoods}
-              />} />
-              <Route path="/search" element={<Search
-                loggedIn={loggedIn}
-                userInfo={userInfo}
-              />} />
-              <Route path="/settings" element={<Settings
-                loggedIn={loggedIn}
-                userInfo={userInfo}
-              />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login
-                handleSetLoggedIn={handleSetLoggedIn} />} />
-            </Routes>
-          </main>
-        </FoodsContext.Provider>
-      </MetricsContext.Provider>
-
+      <MacrosContext.Provider value={{ userMacros, setUserMacros }}>
+        <MetricsContext.Provider value={{ userMetrics, setUserMetrics }}>
+          <FoodsContext.Provider value={{ userFoods, setUserFoods }}>
+            <main>
+              <Routes>
+                <Route path="/" element={<Home
+                  loggedIn={loggedIn}
+                  userInfo={userInfo}
+                  getUserFoods={getUserFoods}
+                />} />
+                <Route path="/search" element={<Search
+                  loggedIn={loggedIn}
+                  userInfo={userInfo}
+                />} />
+                <Route path="/settings" element={<Settings
+                  loggedIn={loggedIn}
+                  userInfo={userInfo}
+                />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login
+                  handleSetLoggedIn={handleSetLoggedIn} />} />
+              </Routes>
+            </main>
+          </FoodsContext.Provider>
+        </MetricsContext.Provider>
+      </MacrosContext.Provider>
       <footer>
         <h4>© 2022</h4>
         <a href="https://github.com/tkg808" target="_blank" rel="noreferrer noopener">Github</a>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import NutritionTotals from './NutritionTotals';
 import FoodList from './FoodList';
-import { FoodsContext, MetricsContext } from '../UserContext';
+import { FoodsContext, MetricsContext, MacrosContext } from '../UserContext';
 import Graph from './Graph';
 import { NT_API_URL } from '../apiConfig';
 import axios from 'axios';
@@ -10,6 +10,7 @@ export default function Home({ loggedIn, userInfo, getUserFoods })
 {
   const { userFoods, setUserFoods } = useContext(FoodsContext);
   const { userMetrics } = useContext(MetricsContext);
+  const { userMacros } = useContext(MacrosContext);
 
   // tracks data to render.
   const totals =
@@ -55,6 +56,8 @@ export default function Home({ loggedIn, userInfo, getUserFoods })
     getUserFoods();
   }, [])
 
+  console.log(userFoods);
+
   if (!loggedIn && !userInfo)
   {
     return (
@@ -70,7 +73,7 @@ export default function Home({ loggedIn, userInfo, getUserFoods })
     <div className="home-container">
       <h2>Nutrition Summary</h2>
       <div className="summary-container">
-        <NutritionTotals totals={totals} userMetrics={userMetrics} />
+        <NutritionTotals totals={totals} userMetrics={userMetrics} userMacros={userMacros} />
         <Graph className="graph" />
       </div>
       <FoodList userFoods={userFoods} deleteFood={deleteFood} />

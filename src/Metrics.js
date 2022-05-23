@@ -12,8 +12,6 @@ export default class Metrics
     this.height = height;
     this.weight = weight;
     this.activityLevel = activityLevel;
-    this.bmr = this.getBMR();
-    this.dailyCalories = this.getDailyCalories();
   }
 
   getBMR()
@@ -28,9 +26,9 @@ export default class Metrics
 
   getDailyCalories()
   {
-    const val = Math.round(this.bmr * this.activityLevel);
+    const val = (this.getBMR() * this.activityLevel);
 
-    return (val > 100 ? val : "~");
+    return (val > 100 ? val.toFixed(1) : "~");
   }
 }
 
