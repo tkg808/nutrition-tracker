@@ -10,8 +10,8 @@ import { FoodsContext, MetricsContext, MacrosContext } from './UserContext';
 import Settings from './components/Settings';
 import axios from 'axios';
 import { NT_API_URL } from './apiConfig';
-import Metrics from './Metrics';
-import Macros from './Macros';
+import Metrics from './classes/Metrics';
+import Macros from './classes/Macros';
 
 export default function App()
 {

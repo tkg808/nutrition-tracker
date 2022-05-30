@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import Metrics from '../Metrics';
+import Metrics from '../classes/Metrics';
 import { MetricsContext, MacrosContext } from '../UserContext';
 import MetricsForm from './MetricsForm';
-import Macros from '../Macros';
+import Macros from '../classes/Macros';
 import MacrosForm from './MacrosForm';
 
 export default function Settings({ loggedIn, userInfo })

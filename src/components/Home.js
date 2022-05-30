@@ -28,7 +28,7 @@ export default function Home({ loggedIn, userInfo, getUserFoods })
     totals.fats += food.fat_total_g;
     totals.carbs += food.carbohydrates_total_g;
     totals.proteins += food.protein_g;
-  })
+  });
 
   function deleteFood(foodId)
   {
@@ -54,9 +54,7 @@ export default function Home({ loggedIn, userInfo, getUserFoods })
   useEffect(() =>
   {
     getUserFoods();
-  }, [])
-
-  console.log(userFoods);
+  }, []);
 
   if (!loggedIn && !userInfo)
   {
@@ -69,12 +67,26 @@ export default function Home({ loggedIn, userInfo, getUserFoods })
     )
   }
 
+  if (!userMetrics || !userMacros)
+  {
+    return null;
+  }
+
   return (
     <div className="home-container">
       <h2>Nutrition Summary</h2>
       <div className="summary-container">
-        <NutritionTotals totals={totals} userMetrics={userMetrics} userMacros={userMacros} />
-        <Graph className="graph" />
+        {userMetrics.gender && userMacros.fatsPercent ?
+          <Graph
+            className="graph"
+            current={totals}
+            daily={userMacros}
+            dailyCalories={userMetrics.getDailyCalories()} /> :
+          <NutritionTotals
+            totals={totals}
+            userMetrics={userMetrics}
+            userMacros={userMacros} />
+        }
       </div>
       <FoodList userFoods={userFoods} deleteFood={deleteFood} />
       {!userFoods.length && <p className="list-tip">Search for foods/meals to add to this list...</p>}
