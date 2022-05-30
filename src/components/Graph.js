@@ -2,44 +2,52 @@ import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 
-export default function Graph()
+export default function Graph({ current, daily, dailyCalories })
 {
   Chart.register(ArcElement, Tooltip, Legend);
-
-  const DATA_COUNT = 5;
-  const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+  // const DATA_COUNT = 8;
+  // const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
 
   // const labels = Utils.months({count: 7});
-  const data = {
+
+  const data =
+  {
     labels:
       [
         'Current Calories',
-        'Total Calories',
+        'Daily Calories',
         'Current Carbs',
-        'Total Carbs',
+        'Daily Carbs',
         'Current Proteins',
-        'Total Proteins',
+        'Daily Proteins',
         'Current Fats',
-        'Total Fats'
+        'Daily Fats'
       ],
-    datasets: [
-      {
-        backgroundColor: ['#AAA', '#777'],
-        data: [21, 79]
-      },
-      {
-        backgroundColor: ['hsl(0, 100%, 60%)', 'hsl(0, 100%, 35%)'],
-        data: [33, 67]
-      },
-      {
-        backgroundColor: ['hsl(100, 100%, 60%)', 'hsl(100, 100%, 35%)'],
-        data: [20, 80]
-      },
-      {
-        backgroundColor: ['hsl(180, 100%, 60%)', 'hsl(180, 100%, 35%)'],
-        data: [10, 90]
-      }
-    ]
+    datasets:
+      [
+        // Labels generator is only using the first data object in datasets.
+        {
+          label: 'Calories',
+          backgroundColor: ['#AAA', '#777'],
+          // backgroundColor: ['hsl(180, 100%, 60%)', 'hsl(180, 100%, 35%)',],
+          data: [current.calories, dailyCalories]
+        },
+        {
+          label: 'Carbs',
+          backgroundColor: ['hsl(0, 100%, 60%)', 'hsl(0, 100%, 35%)'],
+          data: [current.carbs, daily.getCarbs(dailyCalories)]
+        },
+        {
+          label: 'Proteins',
+          backgroundColor: ['hsl(100, 100%, 60%)', 'hsl(100, 100%, 35%)'],
+          data: [current.proteins, daily.getProteins(dailyCalories)]
+        },
+        {
+          label: 'Fats',
+          backgroundColor: ['hsl(180, 100%, 60%)', 'hsl(180, 100%, 35%)'],
+          data: [current.fats, daily.getFats(dailyCalories)]
+        }
+      ]
   };
 
   const config = {
@@ -68,11 +76,13 @@ export default function Graph()
               {
                 // There are twice as many labels as there are datasets. This converts the label index into the corresponding dataset index
                 label.datasetIndex = (label.index - label.index % 2) / 2;
+                // label.datasetIndex = index;
 
                 // The hidden state must match the dataset's hidden state
                 label.hidden = !chart.isDatasetVisible(label.datasetIndex);
 
                 // Change the color to match the dataset
+                // Use label's index, since there are enough colors for each label in the legend.
                 label.fillStyle = datasetColors[label.index];
               });
 
@@ -103,7 +113,11 @@ export default function Graph()
 
   return (
     <div className="graph-container">
-      <Pie className="graph" data={data} config={config} />
+      <Pie
+        className="graph"
+        type={config.type}
+        data={config.data}
+        options={config.options} />
     </div>
   )
 }
