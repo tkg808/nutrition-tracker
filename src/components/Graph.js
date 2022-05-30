@@ -5,10 +5,6 @@ import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 export default function Graph({ current, daily, dailyCalories })
 {
   Chart.register(ArcElement, Tooltip, Legend);
-  // const DATA_COUNT = 8;
-  // const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
-
-  // const labels = Utils.months({count: 7});
 
   const data =
   {
@@ -25,11 +21,9 @@ export default function Graph({ current, daily, dailyCalories })
       ],
     datasets:
       [
-        // Labels generator is only using the first data object in datasets.
         {
           label: 'Calories',
           backgroundColor: ['#AAA', '#777'],
-          // backgroundColor: ['hsl(180, 100%, 60%)', 'hsl(180, 100%, 35%)',],
           data: [current.calories, dailyCalories]
         },
         {
@@ -76,7 +70,6 @@ export default function Graph({ current, daily, dailyCalories })
               {
                 // There are twice as many labels as there are datasets. This converts the label index into the corresponding dataset index
                 label.datasetIndex = (label.index - label.index % 2) / 2;
-                // label.datasetIndex = index;
 
                 // The hidden state must match the dataset's hidden state
                 label.hidden = !chart.isDatasetVisible(label.datasetIndex);
@@ -111,6 +104,8 @@ export default function Graph({ current, daily, dailyCalories })
     },
   };
 
+  // In normal JS, you would create a new Object using config.
+  // In React, you need to pass pass the parts of config separately.
   return (
     <div className="graph-container">
       <Pie
