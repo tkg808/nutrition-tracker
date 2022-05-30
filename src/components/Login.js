@@ -25,8 +25,6 @@ export default function Login({ handleSetLoggedIn })
   {
     event.preventDefault();
 
-    console.log(formData);
-
     axios.post(NT_API_URL + "users/login", formData)
       .then((response) =>
       {
