@@ -37,7 +37,7 @@ export default function Home({ loggedIn, userInfo, getUserFoods })
         headers:
         {
           "Authorization": `Bearer ${localStorage.getItem("token")}`
-        }
+        },
       })
       .then((response) => 
       {

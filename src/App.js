@@ -51,7 +51,7 @@ export default function App()
         headers:
         {
           "Authorization": `Bearer ${localStorage.getItem("token")}`
-        }
+        },
       }
     )
       .then((response) => 
@@ -63,8 +63,6 @@ export default function App()
       })
       .then((data) => 
       {
-        console.log(data);
-        console.log(data.metrics);
         setUserInfo(data.username);
         setUserMetrics(new Metrics(data.metrics));
         setUserMacros(new Macros(data.macros));
@@ -79,7 +77,7 @@ export default function App()
         headers:
         {
           "Authorization": `Bearer ${localStorage.getItem("token")}`
-        }
+        },
       })
       .then((response) => 
       {
@@ -100,9 +98,6 @@ export default function App()
       getUserInfo();
     }
   }, []);
-
-  console.log(userMetrics);
-  console.log(userMacros);
 
   return (
     <div className="App">
