@@ -9,7 +9,7 @@
 {
   --primary: #7f5539;
   --secondary: #fdf0d4;
-  /* --accent1: #ddb892; */
+  --other: #ddb892;
   --accent: #14c01a;
   --lightText: white;
 }
@@ -46,28 +46,75 @@ h1.brand-name
 {
   align-self: flex-end;
   font-size: 2.25em;
+  line-height: 1em;
 }
 
 nav.nav-container
 {
+  height: 10vh;
+  padding-right: 2rem;
   width: 70%;
+  /* position: relative; */
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-content: center;
 }
 
-div.function-links
+#bars-icon
 {
-  width: 50%;
-  display: flex;
-  justify-content: space-evenly;
+  height: 10vh;
 }
 
-div.user-links
+div.dropdown-container
 {
-  width: 30%;
+  width: 150px;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  background-color: var(--other);
+  top: 0;
+  right: 0;
+  -webkit-transition: transform 2s all ease-in-out;
+  -moz-transition: transform 2s all ease-in-out;
+  -o-transition: transform 2s all ease-in-out;
+  -ms-transition: transform 2s all ease-in-out;
+  transition: transform 2s all ease-in-out;
+}
+
+div.dropdown-container.active
+{
+  -webkit-transform: translateY(10vh);
+  -moz-transform: translateY(10vh);
+  -o-transform: translateY(10vh);
+  -ms-transform: translateY(10vh);
+  transform: translateY(10vh);
+}
+
+div.dropdown-container a
+{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: .5px solid white;
+}
+
+div.dropdown-container:last-child
+{
+  border-bottom: none;
+}
+
+
+
+div.links-container
+{
+  width: 75%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 
 div.links-container a
@@ -83,9 +130,15 @@ a
   text-decoration: none;
 }
 
-a:hover, button, #remove-food, #add-food
+a:hover, button, #remove-food, #add-food, #bars-icon
 {
   cursor: pointer;
+}
+
+a:hover
+{
+  color: var(--accent);
+  transition: .5s all ease-in-out;
 }
 
 footer
@@ -270,3 +323,30 @@ input::-webkit-inner-spin-button
 {
   padding: 10px;
 }
+
+/* @media only screen and (max-width: 768)
+{
+  .nav-container
+  {
+    padding-right: 2rem;
+    width: 70%;
+    display: none;
+    justify-content: flex-end;
+    align-content: center;
+  }
+
+  .links-container
+  {
+    width: 75%;
+    display: none;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .links-container a
+  {
+    display: none;
+    align-items: center;
+    font-size: 1.5em;
+  }
+} */

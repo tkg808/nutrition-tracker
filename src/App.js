@@ -19,6 +19,10 @@ export default function App()
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+  const [matches, setMatches] = useState(
+    window.matchMedia("(min-width: 768)").matches
+  );
+  const [showDropdown, setShowDropdown] = useState(false);
 
   // instantiates contexts.
   const [userFoods, setUserFoods] = useState([]);
@@ -42,6 +46,16 @@ export default function App()
     localStorage.removeItem("token");
     alert("You have been logged out!");
     navigate("/");
+  }
+
+  function handleShowDropdown(event)
+  {
+    setShowDropdown(!showDropdown);
+  }
+
+  function handleClose()
+  {
+    showDropdown && setShowDropdown(false);
   }
 
   function getUserInfo()
@@ -97,13 +111,26 @@ export default function App()
       setLoggedIn(true);
       getUserInfo();
     }
+
+    window
+      .matchMedia("(min-width: 768px)")
+      .addEventListener("change", (event) =>
+      {
+        setMatches(event.matches)
+        // Fixes issue of dropdown still showing when screen size is large. 
+        !matches && setShowDropdown(false);
+      });
+
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" onClick={handleClose}>
       <Navigation
         loggedIn={loggedIn}
-        handleLogout={handleLogout} />
+        handleLogout={handleLogout}
+        showDropdown={showDropdown}
+        handleShowDropdown={handleShowDropdown}
+        matches={matches} />
       <MacrosContext.Provider value={{ userMacros, setUserMacros }}>
         <MetricsContext.Provider value={{ userMetrics, setUserMetrics }}>
           <FoodsContext.Provider value={{ userFoods, setUserFoods }}>
