@@ -135,8 +135,8 @@ export default function Search({ loggedIn, userInfo })
     return (
       <div className="settings-container">
         <h2>Measure what matters!</h2>
-        <h2>Find foods and their nutrients to be in control of your diet!</h2>
-        <img src="https://cdn.pixabay.com/photo/2016/03/05/21/43/appetite-1239056_960_720.jpg" alt="measure what matters" />
+        <p>Find foods and their nutrients to be in control of your diet!</p>
+        <img className="search-image" src="https://cdn.pixabay.com/photo/2016/03/05/21/43/appetite-1239056_960_720.jpg" alt="measure what matters" />
       </div>
     )
   }

@@ -14,6 +14,11 @@
   --lightText: white;
 }
 
+.App
+{
+  width: 100%;
+}
+
 body
 {
   min-width: 375px;
@@ -107,8 +112,6 @@ div.dropdown-container:last-child
   border-bottom: none;
 }
 
-
-
 div.links-container
 {
   width: 75%;
@@ -138,7 +141,7 @@ a:hover, button, #remove-food, #add-food, #bars-icon
 a:hover
 {
   color: var(--accent);
-  transition: .5s all ease-in-out;
+  transition: .3s all ease-in-out;
 }
 
 footer
@@ -167,14 +170,39 @@ main
   min-height: 600px;
 }
 
+.home-container, .search-container, .settings-container
+{
+  width: 100%;
+}
+
 .home-container
 {
-  min-width: 375px;
   padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+img.home-image
+{
+  width: 60%;
+  object-fit: contain;
+  border-radius: 2%;
+}
+
+img.search-image
+{
+  width: 50%;
+  object-fit: contain;
+  border-radius: 2%;
+}
+
+img.settings-image
+{
+  width: 45%;
+  object-fit: contain;
+  border-radius: 2%;
 }
 
 .summary-container
@@ -258,7 +286,6 @@ ul
 
 div.search-container
 {
-  width: 100%;
   padding: 0 10px;
   display: flex;
   flex-direction: column;
@@ -287,7 +314,6 @@ textarea#search-input
 
 div.settings-container
 {
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

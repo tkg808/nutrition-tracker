@@ -39,8 +39,8 @@ export default function Settings({ loggedIn, userInfo })
     return (
       <div className="settings-container">
         <h2>You are unique!</h2>
-        <h2>Find your caloric needs based on your body and activeness!</h2>
-        <img src="https://cdn.pixabay.com/photo/2019/10/18/14/58/remove-4559326_960_720.jpg" alt="measure person" />
+        <p>Find your caloric needs based on your body and activeness!</p>
+        <img className="settings-image" src="https://cdn.pixabay.com/photo/2019/10/18/14/58/remove-4559326_960_720.jpg" alt="measure person" />
       </div>
     )
   }

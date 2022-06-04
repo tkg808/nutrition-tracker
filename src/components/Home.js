@@ -61,8 +61,8 @@ export default function Home({ loggedIn, userInfo, getUserFoods })
     return (
       <div className="home-container">
         <h2>The first step is diet!</h2>
-        <h2>Keep track of foods and their nutrients throughout the day!</h2>
-        <img src="https://cdn.pixabay.com/photo/2019/10/18/14/58/remove-4559331_960_720.jpg" alt="first step" />
+        <p>Keep track of meals and nutrients throughout the day!</p>
+        <img className="home-image" src="https://cdn.pixabay.com/photo/2019/10/18/14/58/remove-4559331_960_720.jpg" alt="first step" />
       </div>
     )
   }
