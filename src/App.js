@@ -20,7 +20,7 @@ export default function App()
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [matches, setMatches] = useState(
-    window.matchMedia("(min-width: 768)").matches
+    window.matchMedia("(min-width: 768)")
   );
   const [showDropdown, setShowDropdown] = useState(false);
 
