@@ -74,6 +74,11 @@ export default function App()
         {
           return response.data;
         }
+        else if (response.status == 401)
+        {
+          // Forces logout when token is expired.
+          handleLogout();
+        }
       })
       .then((data) => 
       {
